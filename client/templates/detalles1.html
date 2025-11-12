@@ -1,0 +1,244 @@
+{% extends "navbar.html" %}
+
+{% block title %}Detalles{% endblock %}
+
+{% block content %}
+
+{# ───────── CONFIGURACIÓN SEGÚN EL PRODUCTO ───────── #}
+{% if producto == 'bar' %}
+    {% set titulo = 'Bar' %}
+    {% set precio = 250 %}
+    {% set img_color1 = 'img/bar1.png' %}
+    {% set img_color2 = 'img/bar2.png' %}
+     {% set color1 = '#0044ff' %}      {# azul #}
+    {% set color2 = '#Ff0000' %}      {# rojo #}
+
+{% elif producto == 'banos' %}
+    {% set titulo = 'Baños' %}
+    {% set precio = 260 %}
+    {% set img_color1 = 'img/banos.jpg' %}
+    {% set img_color2 = 'img/banos2.png' %}
+       {% set color1 = '#Ff0000' %}      {# rojo #}
+    {% set color2 = '#572364' %}      {# morado #}
+    
+
+{% elif producto == 'open' %}
+    {% set titulo = 'Open' %}
+    {% set precio = 280 %}
+    {% set img_color1 = 'img/open.jpg' %}
+    {% set img_color2 = 'img/open2.png' %}
+       {% set color1 = '#0044ff' %}      {# azul #}
+    {% set color2 = '#Ff0080' %}      {# rojo #}
+
+{% elif producto == 'closed' %}
+    {% set titulo = 'Closed' %}
+    {% set precio = 280 %}
+    {% set img_color1 = 'img/closed.jpg' %}
+    {% set img_color2 = 'img/closed2.png' %}
+    {% set color1 = '#Ff0000' %}      {# rojo #}
+    {% set color2 = '#572364' %}      {# morado #}
+
+{% elif producto == 'twich' %}
+    {% set titulo = 'Twich' %}
+    {% set precio = 300 %}
+    {% set img_color1 = 'img/twich1.png' %}
+    {% set img_color2 = 'img/twich2.png' %}
+    {% set color2 = '#Ff0000' %}      {# rojo #}
+    {% set color1 = '#572364' %}      {# morado #}
+   
+
+{% elif producto == 'exit' %}
+    {% set titulo = 'Exit' %}
+    {% set precio = 300 %}
+    {% set img_color1 = 'img/exit1.png' %}
+    {% set img_color2 = 'img/exit2.png' %}
+       {% set color1 = '#0044ff' %}      {# azul #}
+    {% set color2 = '#20FA07' %}      {# rojo #}
+
+{% else %}
+    {# fallback por si alguien entra a un slug raro #}
+    {% set titulo = 'Producto' %}
+    {% set precio = 0 %}
+    {% set img_color1 = 'img/bar1.png' %}
+    {% set img_color2 = 'img/bar1.png' %}
+       {% set color1 = '#0044ff' %}      {# azul #}
+    {% set color2 = '#Ff0000' %}      {# rojo #}
+{% endif %}
+
+<div class="product" id="product">
+    <!-- IMAGEN DEL PRODUCTO -->
+    <img src="{{ url_for('static', filename=img_color1) }}" alt="{{ titulo }}" class="productImg">
+
+    <!-- DETALLES DEL PRODUCTO -->
+    <div class="productDetails">
+        <h1 class="productTitle">{{ titulo }}</h1>
+        <h2 class="productPrice">${{ precio }}</h2>
+
+        <p class="productDesc">
+            Precios y disponibilidad válidos en tienda en línea.
+            Hacemos nuestro mejor esfuerzo para mostrar inventario y ubicación del producto 
+            en tienda lo más actualizado posible. Sin embargo, pudieran existir ligeras 
+            diferencias en tienda versus lo que está en línea.
+            Todas las imágenes mostradas son con fines ilustrativos.
+        </p>
+
+        <div class="colors">
+  <div class="color"
+       data-img="{{ url_for('static', filename=img_color1) }}"
+       style="background-color: {{ color1 }};">
+  </div>
+
+  <div class="color"
+       data-img="{{ url_for('static', filename=img_color2) }}"
+       style="background-color: {{ color2 }};">
+  </div>
+</div>
+
+
+        <div class="sizes">
+            <div class="size">40 X 30</div>
+            <div class="size">30 X 20</div>
+            <div class="size">30 X 10</div>
+        </div>
+
+        <button class="productButton">COMPRAR AHORA!</button>
+    </div>
+
+    <!-- FORMULARIO DE PAGO -->
+    <div class="payment">
+        <h1 class="payTitle">Información personal</h1>
+        <label>Nombre de usuario</label>
+        <input type="text" placeholder="Cosme Fulanito" class="payInput">
+
+        <label>Número telefónico</label>
+        <input type="text" placeholder="+52 614 123 4567" class="payInput">
+
+        <label>Correo electrónico</label>
+        <input type="text" placeholder="cosme@gmail.com" class="payInput">
+
+        <h1 class="payTitle">Número de tarjeta</h1>
+        <input type="password" class="payInput" placeholder="Card Number">
+
+        <div class="cardInfo">
+            <input type="text" placeholder="Día" class="payInput sm">
+            <input type="text" placeholder="Mes" class="payInput sm">
+            <input type="text" placeholder="Año" class="payInput sm">
+        </div>
+
+        <div class="cardIcons">
+            <img src="{{ url_for('static', filename='img/visa.png') }}" width="40" alt="Visa" class="cardIcon">
+            <img src="{{ url_for('static', filename='img/master.png') }}" width="40" alt="Mastercard" class="cardIcon">
+        </div>
+
+        <button class="payButton">¡Comprar!</button>
+        <span class="close">X</span>
+    </div>
+
+    <!-- Onda decorativa inferior -->
+    <div class="wave-bottom">
+        <svg viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path fill="#f8c6d4" fill-opacity="1"
+                  d="M0,320 C480,480 960,160 1440,320 L1440,500 L0,500 Z">
+            </path>
+        </svg>
+    </div>
+</div>
+
+<!-- Sección de Reseñas y Materiales -->
+<section class="tabs-section">
+  <div class="tabs">
+    <button class="tab-button active" data-tab="reseñas">Reseñas</button>
+    <button class="tab-button" data-tab="materiales">Materiales</button>
+  </div>
+
+  <div class="tab-content active" id="reseñas">
+    <h2 class="reviews-title">Opiniones de nuestros clientes</h2>
+    <div class="reviews-container">
+      <div class="review-card light">
+        <div class="review-header">
+          <img src="{{ url_for('static', filename='img/user1.jpg') }}" alt="Usuario" class="review-avatar">
+          <div class="review-name">Carlos G.</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-text">
+          “¡Me encantó mi letrero! Pedí uno con mi frase favorita y quedó idéntico al diseño que imaginaba.
+          La luz es muy suave y el color rosa neón se ve increíble en mi habitación.”
+        </p>
+      </div>
+
+      <div class="review-card dark">
+        <div class="review-header">
+          <img src="{{ url_for('static', filename='img/user2.jpg') }}" alt="Usuario" class="review-avatar">
+          <div class="review-name">Mariana L.</div>
+          <div class="review-stars">★★★★☆</div>
+        </div>
+        <p class="review-text">
+          “Excelente calidad y atención. Me ayudaron a ajustar el tamaño para mi local y el resultado fue justo lo que necesitaba.
+          Tardó un poco más de lo esperado, pero valió totalmente la pena.”
+        </p>
+      </div>
+
+      <div class="review-card light">
+        <div class="review-header">
+          <img src="{{ url_for('static', filename='img/user3.jpg') }}" alt="Usuario" class="review-avatar">
+          <div class="review-name">Andrea P.</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-text">
+          “Súper recomendado. El equipo de Lumina entendió perfecto mi idea. El letrero “Dream Big” quedó precioso y le dio vida a mi estudio.
+          ¡Sin duda volveré a pedir otro!”
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="materiales">
+    <h2 class="reviews-title">Materiales y calidad</h2>
+    <p class="materials-text">
+      Nuestros letreros están fabricados con materiales de alta durabilidad y acabado profesional:
+    </p>
+    <ul class="materials-list">
+      <li>Acrílico resistente a rayones</li>
+      <li>Iluminación LED de bajo consumo</li>
+      <li>Montura de aluminio ligero</li>
+      <li>Protección contra humedad y polvo (IP65)</li>
+    </ul>
+  </div>
+</section>
+
+ <!-- FOOTER -->
+<footer class="lumina-footer py-4">
+  <div class="container text-center">
+    <!-- Logo -->
+    <div class="footer-logo mb-3">
+      <img src="{{ url_for('static', filename='img/LogoLumina.png') }}" 
+           alt="Logo Lumina" 
+           class="footer-logo-img">
+    </div>
+
+   <!-- Redes sociales -->
+<div class="social-icons d-flex justify-content-center gap-3">
+  <a href="#" aria-label="Facebook">
+    <img src="{{ url_for('static', filename='img/iconos1.png') }}" 
+         alt="Facebook" 
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Instagram">
+    <img src="{{ url_for('static', filename='img/iconos2.png') }}" 
+         alt="Instagram" 
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Tiktok">
+    <img src="{{ url_for('static', filename='img/iconos3.png') }}" 
+         alt="Tiktok" 
+         class="social-icon-img">
+  </a>
+</div>
+
+</footer>
+
+<!-- Carga correcta de CSS y JS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/detalles1.css') }}">
+<script src="{{ url_for('static', filename='js/detalles1.js') }}"></script>
+
+{% endblock %}

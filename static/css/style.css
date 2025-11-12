@@ -1,243 +1,499 @@
+:root {
+  --lumina-pink: #ff4da6;
+  --lumina-pink-soft: #ffc9e7;
+  --lumina-bg-dark: #000000;
+  --lumina-text-dark: #333333;
+  --lumina-white: #ffffff;
+}
+
+/* ------------------ GENERALES ------------------ */
 body {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--lumina-white);
+  color: var(--lumina-text-dark);
+  margin: 0;
+  padding: 0;
 }
 
-/*Decore Index, About*/
-
-article.content {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    width: 750px;
-    margin: 0 auto;
-    background: linear-gradient(to right, #e0e0e0, #c9c9c9);
-    border-radius: 10px;
-    padding: 50px 0 60px 0;
-
-    text-align: center;
+/* ------------------ NAVBAR ------------------ */
+.navbar.bg-dark {
+  background-color: #000000 !important;
+  border-bottom: none !important; /* 👈 elimina la línea gris */
+  box-shadow: none !important;    /* 👈 evita que tenga sombra inferior */
 }
 
-.content h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
+header,
+.navbar {
+  border: none !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
 }
 
-.content .message {
-    color: green;
-    margin-bottom: 15px;
-    font-size: 14px;
+/* Espacio entre navbar y contenido eliminado */
+.navbar + * {
+  margin-top: 0 !important;
+  border-top: none !important;
 }
 
-.content .content-action {
-    margin-top: 20px;
-    width: 250px;
-    padding: auto;
-    display: flex;
-    justify-content: space-between;
+.logo-img {
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(255, 192, 255, 0.6));
 }
 
-.content .btn {
-    display: inline-block;
-    width: 150px;
-    margin: 10px;
-    font-size: 12px;
-    padding: 8px 18px;
-    background-color: blue;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+/* Botones de la navbar */
+.btn-nav-signup {
+  background-color: var(--lumina-pink-soft);
+  color: var(--lumina-pink);
+  border: none;
+  border-radius: 999px;
+  font-weight: 500;
+  padding-inline: 1.2rem;
 }
 
-.content a.singup {
-  /*color button orange gradient*/
-    background: linear-gradient(45deg, orange, darkorange);
-    color: white;
+.btn-nav-signup:hover {
+  filter: brightness(0.95);
+  color: var(--lumina-pink);
 }
 
-.content a.login {
-    background: linear-gradient(45deg, blue, darkblue);
-    color: white;
-     
+.btn-nav-login {
+  background-color: #d63a6b;
+  border: none;
+  color: #ffffff;
+  border-radius: 999px;
+  font-weight: 500;
+  padding-inline: 1.2rem;
 }
 
-
-
-/*Content-form login, signup contact*/
-
-.content-form h1 {
-    text-align: center;
-    margin-top: 20px;
-    /*paddin top righ*/
-    padding: 0 20px 0 0;
+.btn-nav-login:hover {
+  filter: brightness(0.95);
+  color: #ffffff;
 }
 
-.content-form .error {
-    color: red;
-    margin-bottom: 15px;
+/* ------------------ HERO / SLIDER ------------------ */
+.hero-slider {
+  margin-top: 0 !important; /* 👈 elimina espacio debajo del navbar */
 }
 
-article.content-form {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    width: 750px;
-    margin: 0 auto;
-    background: linear-gradient(to right, #f0f0f0, #d9d9d9);
-    border-radius: 10px;
-    padding: 30px;
+/* Contenedor del slider: ocupa todo el ancho disponible */
+.slider-wrapper {
+  width: 100%;
+  background-color: #000000;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.content-form aside.title-decor {
-    /*padding top left right botton*/
-    padding: 0 0 0 60px;
+.slider-images {
+  width: 100%;
+  position: relative;
 }
 
-.content-form h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-align: left;
+/* Imágenes del slider con efecto fade */
+.hero-image {
+  width: 100%;
+  display: none;
+  opacity: 0;
+  border-radius: 0; /* esquinas rectas para alinearse al navbar */
+  object-fit: cover;
+  transition: opacity 0.8s ease-in-out;
 }
 
-.content-form .message {
-    color: green;
-    margin-bottom: 8px;
-    font-size: 14px;
-    text-align: left;
-
+.hero-image.active {
+  display: block;
+  opacity: 1;
 }
 
-.content-form .form {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+/* Flechas del slider */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--lumina-pink);
+  background: none;
+  border: none;
+  z-index: 2;
+  cursor: pointer;
 }
 
-.content-form form {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /*Margin rigth top left botton*/
-    margin: 20px 20px 20px 20px;
+.slider-arrow.left {
+  left: 10px;
 }
 
-.content-form form.login {
-    width: 100%;
-    max-width: 300px;
+.slider-arrow.right {
+  right: 10px;
 }
 
-.content-form form.signup {
-    width: 300%;
-    max-width: 300px;
+.slider-arrow.btn-link {
+  color: var(--lumina-pink);
+  text-decoration: none;
 }
 
-.content-form form.contact {
-    margin-left: 45px;
-    width: 75%;
+.slider-arrow.btn-link:hover {
+  color: var(--lumina-pink-soft);
 }
 
-.content-form .form-group {
-    margin-bottom: 15px;
+/* ------------------ BOTONES LUMINA ------------------ */
+.btn-lumina-primary {
+  background-color: var(--lumina-pink);
+  color: var(--lumina-white);
+  border-radius: 999px;
+  border: none;
+  padding: 0.6rem 1.6rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.content-form label {
-    margin-bottom: 5px;
-    font-weight: bold;
+.btn-lumina-primary:hover {
+  background-color: #e64094;
 }
 
-.content-form input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
+.btn-lumina-secondary {
+  background-color: var(--lumina-pink-soft);
+  color: #b02a71;
+  border-radius: 999px;
+  border: none;
+  padding: 0.6rem 1.6rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.content-form .contact textarea {
-    height: 100px;
-    width: 100%;
-    resize: vertical;
+.btn-lumina-secondary:hover {
+  background-color: #ffb7de;
+  color: #90215c;
 }
 
-.content-form .submit {
-    padding: 5px 15px 5px 15px;
-    background-color: blue;
-    color: white;
-    border-radius: 5px;
-}
-
-.content-form .submit:hover {
-    background-color: darkblue;
-    cursor: pointer;
-}
-
-.content-form .form-links {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.form-links a {
-    color: blue;
-    text-decoration: none;
-    font-size: 10px;
-}
-
-/*resposive mobile*/
-@media (max-width: 600px) {
-
-    /*vertical content without columns*/
-    article.content-form {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .content-form form {
-        padding: 10px;
-    }
-
-    .content-form h1 {
-        font-size: 1.5em;
-    }
-
-    .content-form input {
-        font-size: 1em;
-    }
-
-    .content-form .submit {
-        width: 100%;
-    }
-
+/* ------------------ SECCIÓN PASOS ------------------ */
+.pasos {
+  padding-top: 0.5rem; /* antes 2rem */
+  padding-bottom: 2rem;
 }
 
 
-/*Resonsive tablet*/
-@media (max-width: 900px) and (min-width: 601px) {
-    article.content-form {
-        width: 90%;
-        padding: 15px;
-    }
+.pasos-texto {
+  margin-top: -2rem; /* mueve el texto hacia arriba */
+  margin-bottom: 1.2rem; /* opcional, separa del contenido siguiente */
+}
 
-    .content-form form {
-        padding: 15px;
-    }
 
-    .content-form h1 {
-        font-size: 1.75em;
-    }
+/* Tarjeta tipo "polaroid" */
+.paso-card {
+  background-color: #f7d9ec;
+  border-radius: 6px;
+  padding: 0.8rem;
+  max-width: 210px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
 
-    .content-form input {
-        font-size: 1.1em;
-    }
+/* Caja rosa fuerte donde va la imagen */
+.paso-img-wrapper {
+  background-color: var(--lumina-pink);
+  border-radius: 4px;
+  padding: 1.2rem 1rem;
+}
 
-    .content-form .submit {
-        width: 100%;
-    }
+/* Imagen del paso */
+.paso-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Textos debajo de la imagen */
+.paso-title {
+  margin-top: 0.9rem;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--lumina-pink);
+}
+
+.paso-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--lumina-text-dark);
+}
+
+/* ------------------ FOOTER ------------------ */
+.lumina-footer {
+  background-color: #000000;
+  color: #ffffff;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+
+.footer-logo-img {
+  max-width: 160px;
+  height: auto;
+  display: inline-block;
+}
+
+.social-icons a {
+  display: inline-block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icon-img {
+  width: 32px;
+  height: 32px;
+  
+  transition: all 0.3s ease;
+}
+
+.social-icon-img:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 10px rgba(255, 77, 166, 0.9));
+}
+
+/* ------------------ OPINIONES / TESTIMONIOS ------------------ */
+.opiniones {
+  background-color: #fff7fb; /* un rosita muy suave de fondo */
+}
+
+.opiniones-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--lumina-text-dark);
+}
+
+/* Tarjeta */
+.opinion-card {
+  background-color: #ffe4f3; /* similar a tus tonos Lumina */
+  border-radius: 18px;
+  padding: 1.2rem 1.4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efecto hover tipo destello */
+.opinion-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(255, 77, 166, 0.55);
+}
+
+/* Imagen / ícono */
+.opinion-img-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background-color: var(--lumina-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.4rem;
+}
+
+.opinion-img {
+  max-width: 70%;
+  max-height: 70%;
+}
+
+/* Textos */
+.opinion-nombre {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--lumina-text-dark);
+}
+
+.opinion-tipo {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--lumina-pink);
+  margin: 0;
+}
+
+.opinion-texto {
+  font-size: 0.85rem;
+  color: var(--lumina-text-dark);
+  margin: 0;
+}
+
+
+
+/* ------------------ RESPONSIVO ------------------ */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 50px;
+  }
+
+  .hero-image {
+    max-height: 260px;
+  }
+
+  .lumina-logo-big {
+    font-size: 1.8rem;
+  }
+
+  .logo-banner-box {
+    padding-inline: 1.8rem;
+  }
+}
+
+
+/* Efecto de destello al pasar el cursor */
+.paso-card {
+  background-color: #f7d9ec;
+  border-radius: 6px;
+  padding: 0.8rem;
+  max-width: 210px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Cuando el cursor pasa encima */
+.paso-card:hover {
+  transform: translateY(-6px); /* levanta ligeramente la tarjeta */
+  box-shadow: 0 0 20px 6px rgba(255, 77, 166, 0.5); /* destello rosado */
+}
+
+/* Brillo interior adicional en la caja rosa */
+.paso-card:hover .paso-img-wrapper {
+  box-shadow: 0 0 15px 3px rgba(255, 77, 166, 0.6);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+
+/* Las tarjetas de opinión se pueden clicar */
+.opinion-card {
+  cursor: pointer;
+}
+
+/* ------------------ MODAL DE OPINIONES ------------------ */
+.modal-opinion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-opinion.activo {
+  opacity: 1;
+}
+
+.modal-contenido {
+  position: relative;
+  background-color: #fff7fb;
+  border-radius: 20px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 77, 166, 0.6);
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+}
+
+.modal-opinion.activo .modal-contenido {
+  transform: scale(1);
+}
+
+.modal-contenido img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 0.6rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: var(--lumina-pink);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.cerrar-modal:hover {
+  color: #ff8cc7;
+}
+/* --- CONTENEDOR PRINCIPAL --- */
+.welcome-section {
+  background: linear-gradient(135deg, #ffe6f7, #fff);
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(255, 77, 166, 0.2);
+  margin: 2rem auto;
+  max-width: 900px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* --- TEXTO DE BIENVENIDA --- */
+.welcome-text {
+  flex: 1;
+  min-width: 250px;
+}
+
+.welcome-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: #ff4da6;
+  text-shadow: 0 0 10px rgba(255, 77, 166, 0.5);
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+/* --- AVATAR --- */
+.welcome-avatar {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.avatar-bienvenida {
+  width: 160px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(255, 77, 166, 0.3);
+  background: #fff;
+  padding: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-bienvenida:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(255, 77, 166, 0.5);
+}
+
+/* --- ANIMACIÓN --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

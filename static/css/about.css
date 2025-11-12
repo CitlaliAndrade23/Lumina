@@ -1,0 +1,188 @@
+:root {
+    --lumina-pink: #ff4da6;
+    --lumina-pink-soft: #ffc9e7;
+    --lumina-bg-dark: #000000;
+    --lumina-text-dark: #333333;
+    --lumina-white: #ffffff;
+}
+
+/* CONTENEDOR GENERAL DE LA PÁGINA */
+.nosotros-page {
+    max-width: 900px;
+    margin: 2.5rem auto 3rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+/* HERO NEGRO CON FRASE */
+.nosotros-hero {
+    background-color: var(--lumina-bg-dark);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.nosotros-claim {
+    margin: 0 0 1.2rem 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--lumina-pink);
+}
+
+.nosotros-hero-icon {
+    font-size: 3rem;
+    color: var(--lumina-pink);
+}
+
+/* TARJETAS GENERALES (HISTORIA / VALORES) */
+.nosotros-card {
+    border-radius: 18px;
+    padding: 1.8rem 1.6rem;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.nosotros-card h2 {
+    margin: 0 0 0.8rem 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* HISTORIA EN ROSA CLARO */
+.nosotros-historia {
+    background-color: var(--lumina-pink-soft);
+    color: var(--lumina-text-dark);
+}
+
+.nosotros-historia p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* VALORES EN ROSA FUERTE */
+.nosotros-valores {
+    background-color: var(--lumina-pink);
+    color: var(--lumina-white);
+}
+
+.nosotros-valores p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.nosotros-valores span {
+    font-weight: 700;
+}
+
+/* SECCIÓN EQUIPO */
+.nosotros-equipo {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* CARTAS DE AVATAR */
+.nosotros-avatars {
+    display: flex;
+    justify-content: center;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+}
+
+.avatar-card {
+    background-color: var(--lumina-bg-dark);
+    padding: 0.75rem;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Placeholder de la foto (puedes cambiarlo por una imagen) */
+.avatar-placeholder {
+    width: 90px;
+    height: 100px;
+    border-radius: 10px;
+    border: 2px solid var(--lumina-pink-soft);
+  
+    box-shadow:
+        0 0 10px rgba(255, 77, 166, 0.7),
+        0 0 20px rgba(255, 77, 166, 0.3);
+}
+
+/* TARJETA NEGRA DE TEXTO DEL EQUIPO */
+.equipo-text-card {
+    background-color: var(--lumina-bg-dark);
+    color: var(--lumina-white);
+    border-radius: 18px;
+    padding: 1.7rem 1.6rem;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.equipo-text-card h2 {
+    margin: 0 0 0.8rem 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.equipo-text-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* CTA FINAL */
+.nosotros-cta {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    color: var(--lumina-pink);
+}
+
+/* UN POCO MÁS GRANDE EN PANTALLAS GRANDES */
+@media (min-width: 768px) {
+    .nosotros-claim {
+        font-size: 1.6rem;
+    }
+
+    .nosotros-historia p,
+    .equipo-text-card p {
+        font-size: 0.96rem;
+    }
+
+    .avatar-placeholder {
+        width: 110px;
+        height: 120px;
+    }
+}
+
+
+/* ------------------ FOOTER ------------------ */
+.lumina-footer {
+    background-color: #000000;
+    color: #ffffff;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+}
+
+.footer-logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.social-icons a {
+    color: var(--lumina-pink);
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ffffff;
+}

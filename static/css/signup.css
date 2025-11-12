@@ -1,0 +1,175 @@
+/* ------------ LOGIN LUMINA ------------ */
+
+.signup-wrapper {
+    min-height: calc(100vh - 140px); /* ajusta si tu header/footer son más altos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+    background-color: #ffffff;
+}
+
+.signup-modal {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(320px, 1fr);
+    max-width: 960px;
+    width: 100%;
+    background-color: #ffffff;
+    border: 2px solid var(--lumina-pink);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Botón cerrar (X) */
+.signup-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    text-decoration: none;
+    font-size: 2.3rem;
+    line-height: 1;
+    color: var(--lumina-pink);
+    cursor: pointer;
+}
+
+/* Lado imagen */
+.signup-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Lado formulario */
+.signup-form-side {
+    padding: 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.signup-logo-box {
+    margin-bottom: 0.5rem;
+}
+
+.signup-logo {
+    max-width: 180px;
+    display: block;
+}
+
+.signup-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--lumina-text-dark);
+}
+
+/* Formulario */
+.form.login,
+.form.signup {
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;/*separacion de los campos para meter los datos en el formulario*/
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+}
+
+.form-group label {
+    color: var(--lumina-text-dark);
+}
+
+.form-group input {
+    border-radius: 999px;
+    border: 2px solid var(--lumina-pink);
+    padding: 0.6rem 1rem;
+    outline: none;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+}
+
+.form-group input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 77, 166, 0.25);
+}
+
+/* Botón principal */
+.btn-signup-primary {
+    width: 100%;
+    border-radius: 999px;
+    border: none;
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background-color: #d63a6b; /* puedes cambiar a var(--lumina-pink) si prefieres */
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btn-signup-primary:hover {
+    filter: brightness(0.95);
+}
+
+/* Links inferiores */
+.form-links {
+    margin-top: 0.6rem;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.form-links a {
+    color: var(--lumina-pink);
+}
+
+/* Mensajes de error */
+.error {
+    color: #d9534f;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* Responsive: en móvil se apila y puedes ocultar o mover la imagen */
+@media (max-width: 768px) {
+    .signup-modal {
+        grid-template-columns: 1fr;
+    }
+
+    .signup-image {
+        display: none; /* o déjalo y se verá arriba si prefieres */
+    }
+
+    .login-form-side {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ------------------ FOOTER ------------------ */
+.lumina-footer {
+    background-color: #000000;
+    color: #ffffff;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+}
+
+.footer-logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.social-icons a {
+    color: var(--lumina-pink);
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ffffff;
+}

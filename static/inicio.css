@@ -1,0 +1,227 @@
+:root {
+    --lumina-pink: #ff4da6;
+    --lumina-pink-soft: #ffc9e7;
+    --lumina-bg-dark: #000000;
+    --lumina-text-dark: #333333;
+    --lumina-white: #ffffff;
+}
+
+/* ------------------ GENERALES ------------------ */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--lumina-white);
+    color: var(--lumina-text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------------ HEADER ------------------ */
+.lumina-header {
+    background-color: var(--lumina-bg-dark);
+    color: var(--lumina-white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.lumina-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 60px; /* Ajusta según el tamaño de tu logo */
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(255, 192, 255, 0.6));
+}
+
+.user-label {
+    color: var(--lumina-pink);
+    font-weight: 500;
+}
+
+.cerrar-sesion-btn {
+    border-radius: 999px;
+    border-width: 1px;
+    padding-inline: 1rem;
+    font-size: 0.85rem;
+}
+
+/* ------------------ HERO / SLIDER ------------------ */
+.hero-slider {
+    background-color: #ffffff;
+}
+
+.slider-wrapper {
+    max-width: 650px;
+}
+
+.hero-image {
+    border-radius: 12px;
+    width: 100%;
+    display: block;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: var(--lumina-pink);
+    text-decoration: none;
+}
+
+.slider-arrow.left {
+    left: -10px;
+}
+
+.slider-arrow.right {
+    right: -10px;
+}
+
+/* ------------------ BOTONES LUMINA ------------------ */
+.btn-lumina-primary {
+    background-color: var(--lumina-pink);
+    color: var(--lumina-white);
+    border-radius: 999px;
+    border: none;
+    padding: 0.6rem 1.6rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-lumina-primary:hover {
+    background-color: #e64094;
+    color: var(--lumina-white);
+}
+
+.btn-lumina-secondary {
+    background-color: var(--lumina-pink-soft);
+    color: #b02a71;
+    border-radius: 999px;
+    border: none;
+    padding: 0.6rem 1.6rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-lumina-secondary:hover {
+    background-color: #ffb7de;
+    color: #90215c;
+}
+
+/* ------------------ SECCIÓN DE PASOS ------------------ */
+.pasos-texto {
+    font-weight: 600;
+    color: var(--lumina-text-dark);
+}
+
+.paso-card {
+    background-color: var(--lumina-pink-soft);
+    border-radius: 16px;
+    padding: 2.2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.paso-card:hover {
+    transform: translateY(-5px);
+}
+
+.paso-icon span {
+    font-size: 2.5rem;
+}
+
+.paso-title {
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--lumina-pink);
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 0.5rem;
+}
+
+.paso-text {
+    font-weight: 500;
+}
+
+/* ------------------ LOGO BANNER ------------------ */
+.logo-banner-box {
+    background-color: #000000;
+    border-radius: 18px;
+    padding: 1.8rem 1rem;
+    max-width: 420px;
+}
+
+.lumina-logo-big {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.logo-i {
+    color: var(--lumina-pink);
+}
+
+/* ------------------ SOBRE NOSOTROS ------------------ */
+#sobre-nosotros {
+    background-color: #fff0fa;
+    border-top: 2px solid var(--lumina-pink);
+}
+
+/* ------------------ FOOTER ------------------ */
+.lumina-footer {
+    background-color: #000000;
+    color: #ffffff;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+}
+
+.footer-logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.social-icons a {
+    color: var(--lumina-pink);
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ffffff;
+}
+
+/* ------------------ RESPONSIVO ------------------ */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 50px;
+    }
+
+    .slider-wrapper {
+        max-width: 100%;
+    }
+
+    .paso-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .lumina-logo-big {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .slider-arrow.left {
+        left: -2px;
+    }
+
+    .slider-arrow.right {
+        right: -2px;
+    }
+
+    .logo-banner-box {
+        margin-inline: 1rem;
+    }
+}

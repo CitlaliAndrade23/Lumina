@@ -1,0 +1,127 @@
+{% extends "navbar.html" %}
+
+{% block title %}Venta{% endblock %}
+
+{% block content %}
+
+<div class="container-items">
+    <!-- BAR -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/bar.jpg') }}" alt="Bar" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>BAR</h2>
+            </div>
+            <div class="details">
+                <p class="price">Azul</p>
+                <p class="price">40 X 30 CM</p>
+            </div>
+            <button onclick="window.location.href='{{ url_for('detalles', producto='bar') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- BAÑOS -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/banos.jpg') }}" alt="Banos" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>BAÑOS</h2>
+            </div>
+            <div class="details">
+                <p class="price">Rojo</p>
+                <p class="price">42 X 40 CM</p>
+            </div>
+            <button onclick="window.location.href='{{ url_for('detalles', producto='banos') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- OPEN -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/open.jpg') }}" alt="Open" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>OPEN</h2>
+            </div>
+            <div class="details">
+                <p class="price">Azul</p>
+                <p class="price">60 X 40 CM</p>
+            </div>
+            <button onclick="window.location.href='{{ url_for('detalles', producto='open') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- CLOSED -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/closed.jpg') }}" alt="Closed" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>CLOSED</h2>
+            </div>
+            <div class="details">
+                <p class="price">Rojo</p>
+                <p class="price">60 X 40 CM</p>
+            </div>
+            <button onclick="window.location.href='{{ url_for('detalles', producto='closed') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- TWICH -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/twich.jpg') }}" alt="Twich" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>TWICH</h2>
+            </div>
+            <div class="details">
+                <p class="price">Morado</p>
+                <p class="price">30 X 30 CM</p>
+            </div>
+            <button onclick="window.location.href='{{ url_for('detalles', producto='twich') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- EXIT -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/exit.jpg') }}" alt="Exit" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>EXIT</h2>
+            </div>
+            <div class="details">
+                <p class="price">Azul</p>
+                <p class="price">60 X 30 CM</p>
+            </div>
+            <button onclick="window.location.href='{{ url_for('detalles', producto='exit') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Carga correcta de CSS y JS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/venta.css') }}">
+<script src="{{ url_for('static', filename='js/venta.js') }}"></script>
+
+{% endblock %}

@@ -6,10 +6,19 @@
     <title>{% block title %}Mi App Flask{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    {# bloque opcional para CSS extra por página #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detalles1.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/venta.css') }}">
+    {% block extra_css %}{% endblock %}
+
 </head>
 
 <body>
+     <!--  
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
             <a class="navbar-brand" href="/">MiApp</a>
@@ -50,7 +59,7 @@
                     {% endif %}
                 </ul>
 
-                <!-- Botón Logout alineado a la derecha -->
+                <!-- Botón Logout alineado a la derecha 
                 {% if session.logged_in %}
                 <form class="d-flex" role="search">
                     <a class="btn btn-outline-danger" href="/logout" type="button">Logout</a>
@@ -59,6 +68,73 @@
             </div>
         </div>
     </nav>
+    --> 
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
+    <div class="container">
+        <!-- LOGO -->
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="{{ url_for('static', filename='img/LogoLumina.png') }}"
+                 alt="Logo Lumina"
+                 class="logo-img"
+                 style="height: 40px;">
+        </a>
+
+        <!-- Botón hamburguesa para móvil -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido colapsable -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Links de la izquierda -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if session.logged_in %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/settings">Settings</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contacto</a>
+                    </li>
+                    
+                {% endif %}
+            </ul>
+
+            <!-- Zona derecha -->
+            {% if session.logged_in %}
+                <!-- Solo Logout cuando está logueado -->
+                <a class="btn btn-outline-danger ms-auto" href="/logout" type="button">
+                    Logout
+                </a>
+            {% else %}
+                <!-- Botones Registrarse / Iniciar sesión a la derecha -->
+                <div class="d-flex ms-auto gap-2">
+                    <a href="/signup" class="btn btn-sm btn-nav-signup">
+                        Registrarse
+                    </a>
+                    <a href="/login" class="btn btn-sm btn-nav-login">
+                        Iniciar sesión
+                    </a>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
+
     <hr>
     <div class="content">
         {% block content %}{% endblock %}

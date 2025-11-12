@@ -1,7 +1,15 @@
+import random
 import os
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bcrypt import Bcrypt
 from server.db import crear_tabla_usuarios, agregar_usuario, obtener_usuario_por_email, obtener_usuario_por_id
+
+AVATARES_BIENVENIDA = [
+    "img/persona1.png",
+    "img/persona2.png",
+    "img/persona3.png",
+]
+
 
 # --- Configuración Inicial ---
 app = Flask(__name__, template_folder='client/templates')
@@ -10,6 +18,48 @@ app.secret_key = os.environ.get('SECRET_KEY', 'una_clave_de_desarrollo_insegura'
 bcrypt = Bcrypt(app)
 # Ejecutamos la creación de la tabla al inicio (si no existe)
 crear_tabla_usuarios() 
+
+# 🔹 AQUÍ DEFINIMOS LOS PRODUCTOS (ANTES DE LAS RUTAS)
+PRODUCTOS = {
+    "bar": {
+        "slug": "bar",
+        "nombre": "Bar",
+        "precio": 250,
+        "imagen": "img/bar.png"
+    },
+    "banos": {
+        "slug": "banos",
+        "nombre": "Baños",
+        "precio": 260,
+        "imagen": "img/banos.png"
+    },
+    "open": {
+        "slug": "open",
+        "nombre": "Open",
+        "precio": 280,
+        "imagen": "img/open.png"
+    },
+    "closed": {
+        "slug": "closed",
+        "nombre": "Closed",
+        "precio": 280,
+        "imagen": "img/closed.png"
+    },
+    "twich": {
+        "slug": "twich",
+        "nombre": "Twich",
+        "precio": 300,
+        "imagen": "img/twich.png"
+    },
+    "exit": {
+        "slug": "exit",
+        "nombre": "Exit",
+        "precio": 300,
+        "imagen": "img/exit.png"
+    },
+}
+
+
 
 # --- Decorador de Autenticación (Middleware) ---
 def login_required(f):
@@ -27,13 +77,22 @@ def login_required(f):
 
 @app.route('/about')
 def about():
-    # Estas vistas usan el navbar público si la sesión está cerrada
     return render_template('about.html')
 
 @app.route('/contact')
 def contact():
-    # Estas vistas usan el navbar público si la sesión está cerrada
     return render_template('contact.html')
+
+@app.route('/detalles/<producto>')
+def detalles(producto):
+    return render_template('detalles1.html', producto=producto)
+
+
+
+@app.route('/venta')
+def venta():
+    return render_template('venta.html')
+
 
 # --- Rutas de Autenticación (Login/Signup) ---
 
@@ -48,7 +107,7 @@ def signup():
         lastname = request.form.get('lastname','')
         email = request.form['email']
         password = request.form['password']
-        confirm_password = request.form['confirm_password']
+        confirm_password = request.form['cpassword']
 
         # 1. Validación de Confirmación
         if password != confirm_password:
@@ -90,6 +149,9 @@ def login():
                 session['logged_in'] = True
                 session['user_id'] = usuario['id']
                 session['user_email'] = usuario['email']
+
+                # Elegimos un avatar de los 3 que hay para que de la bienvenida al nuestro usuario
+                session['avatar_bienvenida'] = random.choice(AVATARES_BIENVENIDA)
                 
                 # 3. Redirigir al Home Protegido
                 return redirect(url_for('home'))
@@ -118,9 +180,12 @@ def home():
         # SESIÓN ABIERTA: Mostrar contenido privado (home.html)
         user_id = session.get('user_id')
         user_data = obtener_usuario_por_id(user_id)
+
+       # aqui estamos Recuperamos el avatar elegido al iniciar sesión
+        avatar = session.get('avatar_bienvenida')
         
-        # Renderiza la vista de sesión
-        return render_template('auth/home.html', user=user_data)
+        #aqui estamos Renderizando la vista de sesión y le pasamos avatar al azar
+        return render_template('auth/home.html', user=user_data, avatar=avatar)
     else:
         # SESIÓN CERRADA: Mostrar contenido público (index.html)
         # Asumimos que index.html es la página pública de bienvenida

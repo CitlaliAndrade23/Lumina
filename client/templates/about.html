@@ -3,8 +3,102 @@
 {% block title %}Nosotros{% endblock %}
 
 {% block content %}
-<article class="content">
-    <h1>Acerca de Nosotros</h1>
-    <p class="message">Información sobre nuestra empresa o proyecto.</p>
-</article>
+<main class="nosotros-page">
+
+    <!-- BANNER PRINCIPAL -->
+    <section class="nosotros-banner text-center mb-4">
+        <img src="{{ url_for('static', filename='img/BannerSobreNosotros.png') }}" 
+             alt="Banner Sobre Nosotros"
+             class="img-fluid w-100">
+    </section>
+
+    <!-- HISTORIA -->
+    <section class="nosotros-card nosotros-historia">
+        <h2>Historia de Lumina</h2>
+        <p>
+            Lumina nació con la idea de transformar la luz en arte.<br>
+            Comenzamos creando pequeños letreros de neón
+            para espacios personales, y con el tiempo descubrimos
+            que cada diseño contaba una historia.<br>
+            Hoy, seguimos iluminando emociones,
+            conectando a las personas con piezas que
+            reflejan su esencia y dan vida a sus espacios.
+        </p>
+    </section>
+
+    <!-- VALORES -->
+    <section class="nosotros-card nosotros-valores">
+        <h2>Valores de Lumina</h2>
+        <p><span>Creatividad:</span> Damos forma a ideas únicas que brillan con identidad propia.</p>
+        <p><span>Pasión:</span> Cada diseño se realiza con dedicación y amor por los detalles.</p>
+        <p><span>Personalización:</span> Creemos que la luz debe adaptarse a quien la inspira.</p>
+        <p><span>Calidad:</span> Utilizamos materiales seguros, duraderos y con acabados impecables.</p>
+        <p><span>Sostenibilidad:</span> Trabajamos de manera responsable con el entorno y los recursos.</p>
+    </section>
+
+    <!-- EQUIPO CREATIVO -->
+    <section class="nosotros-equipo">
+        <!-- TARJETAS DE AVATAR (3) -->
+        <div class="nosotros-avatars">
+            <div class="avatar-card">
+                <div class="avatar-placeholder"></div>
+            </div>
+            <div class="avatar-card">
+                <div class="avatar-placeholder"></div>
+            </div>
+            <div class="avatar-card">
+                <div class="avatar-placeholder"></div>
+            </div>
+        </div>
+
+        <!-- TEXTO EQUIPO -->
+        <div class="equipo-text-card">
+            <h2>Equipo creativo</h2>
+            <p>
+                Nuestro equipo está formado por mentes curiosas y apasionadas
+                por el diseño, la tecnología y la estética visual.<br>
+                Cada integrante aporta una chispa distinta: desde la ilustración y el diseño digital,
+                hasta la creación de letreros que iluminan cualquier espacio.<br>
+                Juntos, buscamos que cada cliente sienta su propia luz
+                reflejada en una creación única.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <p class="nosotros-cta">¿Listo para crear tu propia luz?</p>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="lumina-footer py-4">
+  <div class="container text-center">
+    <!-- Logo -->
+    <div class="footer-logo mb-3">
+      <img src="{{ url_for('static', filename='img/LogoLumina.png') }}" 
+           alt="Logo Lumina" 
+           class="footer-logo-img">
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="social-icons d-flex justify-content-center gap-3">
+      <a href="#" aria-label="Facebook">
+        <img src="{{ url_for('static', filename='img/iconos1.png') }}" 
+             alt="Facebook" 
+             class="social-icon-img">
+      </a>
+      <a href="#" aria-label="Instagram">
+        <img src="{{ url_for('static', filename='img/iconos2.png') }}" 
+             alt="Instagram" 
+             class="social-icon-img">
+      </a>
+      <a href="#" aria-label="Tiktok">
+        <img src="{{ url_for('static', filename='img/iconos3.png') }}" 
+             alt="Tiktok" 
+             class="social-icon-img">
+      </a>
+    </div>
+  </div>
+</footer>
+
 {% endblock %}

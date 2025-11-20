@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // === IMAGEN PRINCIPAL Y COLORES ===
   const productImg       = document.querySelector(".productImg");
-  const colorButtons     = document.querySelectorAll(".color");
+  const colorButtons     = document.querySelectorAll(".colors .color");
   const colorHiddenInput = document.getElementById("colorInput");
 
   function setVariantFromButton(btn) {
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // === TAMAÑOS ===
-  const sizeButtons = document.querySelectorAll(".size");
+  const sizeButtons = document.querySelectorAll(".sizes .size");
   const medidaInput = document.getElementById("medidaInput");
 
   sizeButtons.forEach((btn) => {
@@ -68,6 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // Valor inicial de medida (el que tenga .active)
+  const activeSize = document.querySelector(".sizes .size.active");
+  if (activeSize && medidaInput && activeSize.dataset.medida) {
+    medidaInput.value = activeSize.dataset.medida;
+  }
 
   // === TABS (Reseñas / Materiales) ===
   const tabs     = document.querySelectorAll(".tab-button");

@@ -63,33 +63,38 @@
       </div>
 
       <!-- COMPRAR / AGREGAR (requiere login por la ruta protegida /agregar) -->
-      {% if session.get('logged_in') %}
-        <div class="actions" style="display:flex; gap:12px; align-items:center;">
-          <!-- Agregar al carrito -->
-        <form method="post"
-      action="{{ url_for('agregar', producto_slug=producto.slug) }}"
-      class="js-add-to-cart-form">
+ {% if session.get('logged_in') %}
+  <form method="post"
+        action="{{ url_for('agregar', producto_slug=producto.slug) }}"
+        class="js-add-to-cart-form">
     <input type="hidden" name="qty" value="1">
     <input type="hidden" name="medida" id="medidaInput" value="40 X 30">
-    <!-- 👇 aquí guardaremos "color|||img/archivo.png" -->
     <input type="hidden" name="color" id="colorInput" value="">
-    <button class="btn btn-outline-primary">Agregar al carrito</button>
-</form>
 
+    <div class="actions" style="display:flex; gap:12px; align-items:center; flex-direction:column;">
+      <!-- Botón normal: solo agrega al carrito -->
+      <button type="submit"
+              class="btn btn-outline-primary"
+              name="accion"
+              value="add">
+        Agregar al carrito
+      </button>
 
+      <!-- Botón: agrega y luego lleva al carrito -->
+      <button type="submit"
+              class="btn btn-primary"
+              name="accion"
+              value="buy">
+        Comprar ahora
+      </button>
+    </div>
+  </form>
+{% else %}
+  <div class="alert alert-warning mt-2">Debes iniciar sesión para comprar.</div>
+  <a class="btn btn-outline-primary" href="{{ url_for('login', next=request.path) }}">Iniciar sesión</a>
+  <a class="btn btn-primary" href="{{ url_for('signup', next=request.path) }}">Registrarse</a>
+{% endif %}
 
-          
-          <!-- Comprar ahora: ir al carrito -->
-<a href="{{ url_for('carrito') }}" class="btn btn-primary">
-    Comprar ahora
-</a>
-
-        </div>
-      {% else %}
-        <div class="alert alert-warning mt-2">Debes iniciar sesión para comprar.</div>
-        <a class="btn btn-outline-primary" href="{{ url_for('login', next=request.path) }}">Iniciar sesión</a>
-        <a class="btn btn-primary" href="{{ url_for('signup', next=request.path) }}">Registrarse</a>
-      {% endif %}
 
     </div>  {# /productDetails #}
 

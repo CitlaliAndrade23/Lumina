@@ -163,13 +163,15 @@ def agregar(producto_slug):
         color = data.get('color') or ''
         custom_text = data.get('custom_text') or ''
         notes = data.get('notes') or ''
-        action = data.get('action') or 'add'
+
+        # 👇 AQUI EL CAMBIO IMPORTANTE
+        accion = data.get('accion') or data.get('action') or 'add'
 
         user_id = session.get('user_id')
         if not user_id:
             return jsonify({"ok": False, "error": "Usuario no autenticado"}), 401
 
-        # Si trae texto/medida/color, tratamos como personalizado
+        # Si trae texto/medida/color—notas → personalizado
         if custom_text or size or color or notes:
             agregar_al_carrito_personalizado(
                 user_id=user_id,
@@ -181,7 +183,7 @@ def agregar(producto_slug):
                 notes=notes
             )
         else:
-            # caso simple: catálogo estándar (usa tu función normal)
+            # Catálogo estándar
             agregar_al_carrito(
                 user_id=user_id,
                 producto_slug=producto_slug,
@@ -189,9 +191,19 @@ def agregar(producto_slug):
                 medida=size or 'default'
             )
 
+        # Recalcular items del carrito
         filas = obtener_carrito_usuario(user_id)
         cart_count = sum(int(f.get("cantidad", 1)) for f in filas)
 
+        # 🟣 Si el usuario presionó COMPRAR AHORA
+        if accion == "buy":
+            return jsonify({
+                "ok": True,
+                "cart_count": cart_count,
+                "redirect": url_for("carrito")
+            })
+
+        # 🟢 Si solo agregó al carrito
         return jsonify({
             "ok": True,
             "cart_count": cart_count,

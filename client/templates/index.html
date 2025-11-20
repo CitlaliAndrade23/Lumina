@@ -35,8 +35,8 @@
     Catálogo estándar
   </a>
 
-  <!-- (Luego puedes conectar este a otra vista, por ahora lo dejo en #) -->
-  <a href="#" class="btn btn-lumina-secondary">
+  <!-- lleva a la pantalla de catalogo personalizado -->
+   <a href="{{ url_for('venta_personal') }}" class="btn btn-lumina-secondary">
     Catálogo personalizado
   </a>
 </div>
@@ -57,7 +57,7 @@
                 <div class="col-md-4">
                     <div class="paso-card h-100">
                         <div class="paso-img-wrapper">
-                            <!-- Aquí pones tu imagen del paso 1 -->
+                            <!-- imagen del paso 1 -->
                             <img src="{{ url_for('static', filename='img/iconoPaso1.png') }}"
                                  alt="Paso 1"
                                  class="paso-img">

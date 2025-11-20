@@ -1,0 +1,65 @@
+{% extends "navbar.html" %}
+
+{% block title %}Tu carrito{% endblock %}
+
+{% block content %}
+
+<main class="carrito-page container my-4">
+
+  <h1 class="mb-4">Tu carrito</h1>
+
+  {% if items and items|length > 0 %}
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td>
+  <div class="d-flex align-items-center gap-2">
+    <img src="{{ url_for('static', filename=item.imagen) }}" alt="{{ item.nombre }}" width="60">
+    <div>
+      <span>{{ item.nombre }}</span>
+      {% if item.detalles %}
+        <div class="text-muted small">
+          {{ item.detalles }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</td>
+
+            <td>{{ item.qty }}</td>
+            <td>${{ item.precio }}</td>
+            <td>${{ item.subtotal }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <h3>Total: ${{ total }}</h3>
+
+      <form method="post" action="{{ url_for('vaciar_carrito') }}">
+        <button type="submit" class="btn btn-outline-danger">
+          Vaciar carrito
+        </button>
+      </form>
+    </div>
+
+  {% else %}
+    <p>Tu carrito está vacío 🛒</p>
+    <a href="{{ url_for('venta') }}" class="btn btn-primary mt-3">Ir a la tienda</a>
+  {% endif %}
+
+</main>
+
+{% endblock %}

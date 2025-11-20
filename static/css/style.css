@@ -18,8 +18,8 @@ body {
 /* ------------------ NAVBAR ------------------ */
 .navbar.bg-dark {
   background-color: #000000 !important;
-  border-bottom: none !important; /* 👈 elimina la línea gris */
-  box-shadow: none !important;    /* 👈 evita que tenga sombra inferior */
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 header,
@@ -72,10 +72,9 @@ header,
 
 /* ------------------ HERO / SLIDER ------------------ */
 .hero-slider {
-  margin-top: 0 !important; /* 👈 elimina espacio debajo del navbar */
+  margin-top: 0 !important;
 }
 
-/* Contenedor del slider: ocupa todo el ancho disponible */
 .slider-wrapper {
   width: 100%;
   background-color: #000000;
@@ -91,12 +90,11 @@ header,
   position: relative;
 }
 
-/* Imágenes del slider con efecto fade */
 .hero-image {
   width: 100%;
   display: none;
   opacity: 0;
-  border-radius: 0; /* esquinas rectas para alinearse al navbar */
+  border-radius: 0;
   object-fit: cover;
   transition: opacity 0.8s ease-in-out;
 }
@@ -119,13 +117,8 @@ header,
   cursor: pointer;
 }
 
-.slider-arrow.left {
-  left: 10px;
-}
-
-.slider-arrow.right {
-  right: 10px;
-}
+.slider-arrow.left { left: 10px; }
+.slider-arrow.right { right: 10px; }
 
 .slider-arrow.btn-link {
   color: var(--lumina-pink);
@@ -168,16 +161,14 @@ header,
 
 /* ------------------ SECCIÓN PASOS ------------------ */
 .pasos {
-  padding-top: 0.5rem; /* antes 2rem */
+  padding-top: 0.5rem;
   padding-bottom: 2rem;
 }
 
-
 .pasos-texto {
-  margin-top: -2rem; /* mueve el texto hacia arriba */
-  margin-bottom: 1.2rem; /* opcional, separa del contenido siguiente */
+  margin-top: -2rem;
+  margin-bottom: 1.2rem;
 }
-
 
 /* Tarjeta tipo "polaroid" */
 .paso-card {
@@ -187,6 +178,7 @@ header,
   max-width: 210px;
   margin: 0 auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
 }
 
 /* Caja rosa fuerte donde va la imagen */
@@ -218,6 +210,18 @@ header,
   color: var(--lumina-text-dark);
 }
 
+/* Efecto de destello al pasar el cursor */
+.paso-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px 6px rgba(255, 77, 166, 0.5);
+}
+
+/* Brillo interior adicional en la caja rosa */
+.paso-card:hover .paso-img-wrapper {
+  box-shadow: 0 0 15px 3px rgba(255, 77, 166, 0.6);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
 /* ------------------ FOOTER ------------------ */
 .lumina-footer {
   background-color: #000000;
@@ -240,7 +244,6 @@ header,
 .social-icon-img {
   width: 32px;
   height: 32px;
-  
   transition: all 0.3s ease;
 }
 
@@ -251,7 +254,7 @@ header,
 
 /* ------------------ OPINIONES / TESTIMONIOS ------------------ */
 .opiniones {
-  background-color: #fff7fb; /* un rosita muy suave de fondo */
+  background-color: #fff7fb;
 }
 
 .opiniones-titulo {
@@ -262,7 +265,7 @@ header,
 
 /* Tarjeta */
 .opinion-card {
-  background-color: #ffe4f3; /* similar a tus tonos Lumina */
+  background-color: #ffe4f3;
   border-radius: 18px;
   padding: 1.2rem 1.4rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -271,15 +274,14 @@ header,
   gap: 0.5rem;
   height: 100%;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
-/* Efecto hover tipo destello */
 .opinion-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 20px rgba(255, 77, 166, 0.55);
 }
 
-/* Imagen / ícono */
 .opinion-img-wrapper {
   width: 56px;
   height: 56px;
@@ -315,57 +317,6 @@ header,
   font-size: 0.85rem;
   color: var(--lumina-text-dark);
   margin: 0;
-}
-
-
-
-/* ------------------ RESPONSIVO ------------------ */
-@media (max-width: 768px) {
-  .logo-img {
-    height: 50px;
-  }
-
-  .hero-image {
-    max-height: 260px;
-  }
-
-  .lumina-logo-big {
-    font-size: 1.8rem;
-  }
-
-  .logo-banner-box {
-    padding-inline: 1.8rem;
-  }
-}
-
-
-/* Efecto de destello al pasar el cursor */
-.paso-card {
-  background-color: #f7d9ec;
-  border-radius: 6px;
-  padding: 0.8rem;
-  max-width: 210px;
-  margin: 0 auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease-in-out;
-}
-
-/* Cuando el cursor pasa encima */
-.paso-card:hover {
-  transform: translateY(-6px); /* levanta ligeramente la tarjeta */
-  box-shadow: 0 0 20px 6px rgba(255, 77, 166, 0.5); /* destello rosado */
-}
-
-/* Brillo interior adicional en la caja rosa */
-.paso-card:hover .paso-img-wrapper {
-  box-shadow: 0 0 15px 3px rgba(255, 77, 166, 0.6);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-
-/* Las tarjetas de opinión se pueden clicar */
-.opinion-card {
-  cursor: pointer;
 }
 
 /* ------------------ MODAL DE OPINIONES ------------------ */
@@ -426,7 +377,8 @@ header,
 .cerrar-modal:hover {
   color: #ff8cc7;
 }
-/* --- CONTENEDOR PRINCIPAL --- */
+
+/* --- CONTENEDOR PRINCIPAL BIENVENIDA --- */
 .welcome-section {
   background: linear-gradient(135deg, #ffe6f7, #fff);
   padding: 2.5rem 3rem;
@@ -497,3 +449,89 @@ header,
     transform: translateY(0);
   }
 }
+
+/* ------------------ RESPONSIVO ------------------ */
+
+/* Tablet y abajo */
+@media (max-width: 992px) {
+  .logo-img {
+    height: 54px;
+  }
+
+  .hero-image {
+    max-height: 360px;
+  }
+
+  .welcome-section {
+    padding: 2rem 1.8rem;
+    flex-direction: row;
+  }
+
+  .welcome-title {
+    font-size: 2.1rem;
+  }
+}
+
+/* Móvil mediano */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 50px;
+  }
+
+  .hero-image {
+    max-height: 260px;
+  }
+
+  .welcome-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.8rem 1.4rem;
+  }
+
+  .welcome-text {
+    order: 1;
+  }
+
+  .welcome-avatar {
+    order: 2;
+  }
+
+  .welcome-title {
+    font-size: 2rem;
+  }
+
+  .pasos-texto {
+    margin-top: 0;
+    text-align: center;
+  }
+}
+
+/* Móvil chico */
+@media (max-width: 576px) {
+  .hero-image {
+    max-height: 220px;
+  }
+
+  .welcome-section {
+    margin: 1.5rem 1rem;
+    padding: 1.5rem 1.2rem;
+  }
+
+  .welcome-title {
+    font-size: 1.8rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .avatar-bienvenida {
+    width: 140px;
+  }
+}
+
+.cart-icon {
+    width: 26px;
+    height: auto;
+}
+

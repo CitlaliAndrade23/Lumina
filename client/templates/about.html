@@ -35,35 +35,54 @@
         <p><span>Calidad:</span> Utilizamos materiales seguros, duraderos y con acabados impecables.</p>
         <p><span>Sostenibilidad:</span> Trabajamos de manera responsable con el entorno y los recursos.</p>
     </section>
+    
 
-    <!-- EQUIPO CREATIVO -->
+       <!-- EQUIPO CREATIVO -->
     <section class="nosotros-equipo">
-        <!-- TARJETAS DE AVATAR (3) -->
-        <div class="nosotros-avatars">
-            <div class="avatar-card">
-                <div class="avatar-placeholder"></div>
-            </div>
-            <div class="avatar-card">
-                <div class="avatar-placeholder"></div>
-            </div>
-            <div class="avatar-card">
-                <div class="avatar-placeholder"></div>
-            </div>
+
+      <!-- TARJETAS DEL EQUIPO -->
+      <div class="nosotros-avatars">
+
+        <!-- TARJETA ISAAC -->
+        <div class="avatar-card card-isaac">
+          <img src="{{ url_for('static', filename='img/isaac1.png') }}"
+               alt="Isaac - Cada luz tiene su propio ritmo."
+               class="avatar-img">
         </div>
 
-        <!-- TEXTO EQUIPO -->
-        <div class="equipo-text-card">
-            <h2>Equipo creativo</h2>
-            <p>
-                Nuestro equipo está formado por mentes curiosas y apasionadas
-                por el diseño, la tecnología y la estética visual.<br>
-                Cada integrante aporta una chispa distinta: desde la ilustración y el diseño digital,
-                hasta la creación de letreros que iluminan cualquier espacio.<br>
-                Juntos, buscamos que cada cliente sienta su propia luz
-                reflejada en una creación única.
-            </p>
+        <!-- TARJETA CITLALI -->
+        <div class="avatar-card card-citlali">
+          <img src="{{ url_for('static', filename='img/citlali3.png') }}"
+               alt="Citlali - Iluminar ideas es mi forma de crear."
+               class="avatar-img">
         </div>
+
+        <!-- TARJETA JACQUELINE -->
+        <div class="avatar-card card-jacqueline">
+          <img src="{{ url_for('static', filename='img/jacqueline2.png') }}"
+               alt="Jacqueline - El diseño también se siente, no solo se ve."
+               class="avatar-img">
+        </div>
+
+        
+
+      </div>
+
+      <!-- TEXTO EQUIPO -->
+      <div class="equipo-text-card">
+        <h2>Equipo creativo</h2>
+        <p>
+          Nuestro equipo está formado por mentes curiosas y apasionadas
+          por el diseño, la tecnología y la estética visual.<br>
+          Cada integrante aporta una chispa distinta: desde la ilustración y el diseño digital,
+          hasta la creación de letreros que iluminan cualquier espacio.<br>
+          Juntos, buscamos que cada cliente sienta su propia luz
+          reflejada en una creación única.
+        </p>
+      </div>
+
     </section>
+
 
     <!-- CTA FINAL -->
     <p class="nosotros-cta">¿Listo para crear tu propia luz?</p>
@@ -100,5 +119,9 @@
     </div>
   </div>
 </footer>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+
+<script src="{{ url_for('static', filename='js/about.js') }}"></script>
 
 {% endblock %}

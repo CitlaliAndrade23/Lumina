@@ -2,54 +2,117 @@
 
 {% block title %}Contacto{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+{% endblock %}
+
 {% block content %}
 
-<article class="content-form">
+<!-- Alerta de mensaje mandado -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for category, msg in messages %}
+          <div class="alert alert-{{ category }} mb-3">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+<main class="contact-page">
+
+  
+ 
+
+  <section class="contact-card">
+
     <aside class="title-decor">
-        <h1>Contacto</h1>
-        <p class="message">Puedes contactarnos a través de este formulario.</p>
+      <h1>Contacto</h1>
+      <p class="message">
+        Puedes contactarnos a través de este formulario.<br>
+        Te responderemos lo antes posible.
+      </p>
     </aside>
+
     <aside class="form">
-        <form class="form contact" action="/contact" method="POST" novalidate>
-            <div class="form-group">
-                <label for="nombre">Nombre:</label><br>
-                <input 
-                    type="text" 
-                    id="nombre" 
-                    name="nombre"
-                    placeholder="Tu nombre"
-                    autofocus
-                    aria-label="Nombre"
-                    >
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label><br>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email"
-                    placeholder="your@mail.com"
-                    required
-                    aria-label="Email"
-                    >
+      <form class="form contact" action="{{ url_for('contact') }}" method="POST" novalidate>
 
-            </div>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            name="nombre"
+            placeholder="Tu nombre"
+            autofocus
+            aria-label="Nombre"
+            value="{{ nombre or '' }}">
+        </div>
 
-            <div class="form-group">
-                <label for="mensaje">Mensaje:</label><br>
-                <textarea 
-                    id="mensaje" 
-                    name="mensaje" 
-                    rows="4" 
-                    cols="50">
-                </textarea>
-            </div>
-            <div class="form-actions">
-                <input  class="submit" type="submit" value="Enviar">
-            </div>
-        </form>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            placeholder="Tu correo"
+            required
+            aria-label="Email"
+            value="{{ email or '' }}">
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea 
+            id="mensaje" 
+            name="mensaje" 
+            rows="4"
+            placeholder="Cuéntanos qué tienes en mente...">{{ mensaje or '' }}</textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-contact" type="submit">
+            Enviar mensaje
+          </button>
+        </div>
+
+      </form>
     </aside>
 
-</article>
+  </section>
+</main>
+
+  <!-- FOOTER -->
+<footer class="lumina-footer py-4">
+  <div class="container text-center">
+    <!-- Logo -->
+    <div class="footer-logo mb-3">
+      <img src="{{ url_for('static', filename='img/LogoLumina.png') }}" 
+           alt="Logo Lumina" 
+           class="footer-logo-img">
+    </div>
+
+   <!-- Redes sociales -->
+<div class="social-icons d-flex justify-content-center gap-3">
+  <a href="#" aria-label="Facebook">
+    <img src="{{ url_for('static', filename='img/iconos1.png') }}" 
+         alt="Facebook" 
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Instagram">
+    <img src="{{ url_for('static', filename='img/iconos2.png') }}" 
+         alt="Instagram" 
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Tiktok">
+    <img src="{{ url_for('static', filename='img/iconos3.png') }}" 
+         alt="Tiktok" 
+         class="social-icon-img">
+  </a>
+</div>
+
+</footer>
 
 {% endblock %}

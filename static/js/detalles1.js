@@ -1,60 +1,110 @@
-// === IMAGEN PRINCIPAL Y COLORES ===
+// static/js/detalles1.js
+document.addEventListener("DOMContentLoaded", () => {
+  // === IMAGEN PRINCIPAL Y COLORES ===
+  const productImg       = document.querySelector(".productImg");
+  const colorButtons     = document.querySelectorAll(".color");
+  const colorHiddenInput = document.getElementById("colorInput");
 
-// Imagen del producto
-const productImg = document.querySelector(".productImg");
+  function setVariantFromButton(btn) {
+    if (!btn) return;
 
-// Botones de color (los <div class="color" data-img="...">)
-const colorButtons = document.querySelectorAll(".color");
+    const newSrc   = btn.dataset.img;
+    const colorHex = btn.dataset.color || "";
 
-// Cuando haces clic en un color, cambia la imagen según su data-img
-colorButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const newSrc = btn.dataset.img;   // lee el atributo data-img
-    if (newSrc) {
+    // Cambiar imagen grande
+    if (newSrc && productImg) {
       productImg.src = newSrc;
     }
-  });
-});
 
-// === TAMAÑOS ===
-const currentProductSizes = document.querySelectorAll(".size");
+    // Marcar color activo
+    colorButtons.forEach((c) => c.classList.remove("active"));
+    btn.classList.add("active");
 
-currentProductSizes.forEach((size) => {
-  size.addEventListener("click", () => {
-    currentProductSizes.forEach((s) => {
-      s.style.backgroundColor = "white";
-      s.style.color = "black";
+    // Guardar color + imagen en el input hidden
+    if (colorHiddenInput) {
+      let relativeImg = "";
+
+      if (newSrc && newSrc.startsWith("/static/")) {
+        // "/static/img/open.jpg" -> "img/open.jpg"
+        relativeImg = newSrc.slice("/static/".length);
+      } else if (newSrc) {
+        relativeImg = newSrc;
+      }
+
+      if (colorHex && relativeImg) {
+        // Ejemplo: "#0044ff|||img/open.jpg"
+        colorHiddenInput.value = `${colorHex}|||${relativeImg}`;
+      } else if (colorHex) {
+        colorHiddenInput.value = colorHex;
+      } else {
+        colorHiddenInput.value = "";
+      }
+    }
+  }
+
+  // Click en cada color
+  colorButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setVariantFromButton(btn);
     });
-    size.style.backgroundColor = "black";
-    size.style.color = "white";
-  });
-});
-
-// === MODAL DE PAGO ===
-const productButton = document.querySelector(".productButton");
-const payment = document.querySelector(".payment");
-const close = document.querySelector(".close");
-
-if (productButton && payment && close) {
-  productButton.addEventListener("click", () => {
-    payment.style.display = "flex";
   });
 
-  close.addEventListener("click", () => {
-    payment.style.display = "none";
+  // Seleccionar el primer color por defecto
+  if (colorButtons.length > 0) {
+    setVariantFromButton(colorButtons[0]);
+  }
+
+  // === TAMAÑOS ===
+  const sizeButtons = document.querySelectorAll(".size");
+  const medidaInput = document.getElementById("medidaInput");
+
+  sizeButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      sizeButtons.forEach((s) => s.classList.remove("active"));
+      btn.classList.add("active");
+
+      if (medidaInput && btn.dataset.medida) {
+        medidaInput.value = btn.dataset.medida;
+      }
+    });
   });
-}
 
-// === TABS (Reseñas / Materiales) ===
-const tabs = document.querySelectorAll(".tab-button");
-const contents = document.querySelectorAll(".tab-content");
+  // === TABS (Reseñas / Materiales) ===
+  const tabs     = document.querySelectorAll(".tab-button");
+  const contents = document.querySelectorAll(".tab-content");
 
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((t) => t.classList.remove("active"));
-    contents.forEach((c) => c.classList.remove("active"));
+  function activateTab(name) {
+    tabs.forEach((t) =>
+      t.classList.toggle("active", t.dataset.tab === name)
+    );
+    contents.forEach((c) =>
+      c.classList.toggle("active", c.id === name)
+    );
+  }
 
-    tab.classList.add("active");
-    document.getElementById(tab.dataset.tab).classList.add("active");
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => activateTab(tab.dataset.tab));
   });
+
+  if (tabs.length > 0) {
+    activateTab(tabs[0].dataset.tab);
+  }
+
+  // === MODAL DE PAGO (solo si en algún momento usas btnComprar) ===
+  const btnComprar   = document.getElementById("btnComprar");
+  const paymentModal = document.getElementById("paymentModal");
+  const closePay     = document.getElementById("closePay");
+
+  if (btnComprar && paymentModal && closePay) {
+    btnComprar.addEventListener("click", (e) => {
+      e.preventDefault();
+      paymentModal.style.display = "flex";
+    });
+    closePay.addEventListener("click", () => {
+      paymentModal.style.display = "none";
+    });
+    paymentModal.addEventListener("click", (e) => {
+      if (e.target === paymentModal) paymentModal.style.display = "none";
+    });
+  }
 });

@@ -1,0 +1,227 @@
+{% extends "navbar.html" %}
+
+{% block title %}Detalles - {{ producto.nombre }}{% endblock %}
+
+{% block content %}
+
+<!-- ========== PRODUCTO EN FONDO DEGRADADO ========== -->
+<div class="product-wrapper">
+
+  <div class="product" id="product">
+    <!-- IMAGEN PRINCIPAL -->
+    <img src="{{ url_for('static', filename=producto.imagen) }}"
+         alt="{{ producto.nombre }}"
+         class="productImg">
+
+    <!-- DETALLES DEL PRODUCTO -->
+    <div class="productDetails">
+        <h1 class="productTitle">{{ producto.nombre }}</h1>
+        <h2 class="productPrice">$ {{ producto.precio }} (aprox.)</h2>
+
+        <p class="productDesc">
+            Añade un toque personal a cualquier habitación. Estas hermosas luces
+            aportan sofisticación, por lo que son perfectas para salas, cuartos o estudios.
+            ¡Una idea genial para decorar el hogar o una tienda!<br>
+            El precio estándar es por palabra/diseño, por lo que puede variar dependiendo
+            del tamaño y complejidad del texto o figura.
+        </p>
+
+        {% if session.get('logged_in') %}
+          <div class="actions" style="display:flex; gap:12px; align-items:center;">
+            <!-- Botón para abrir modal para 'Agregar al carrito' -->
+           <button type="button"
+        class="btn btn-outline-primary js-open-custom-modal"
+        data-product-slug="{{ producto.slug }}"
+        data-product-id="{{ producto.get('id', '') }}"
+        data-action="add">
+  Agregar al carrito
+</button>
+
+
+            <!-- Botón para abrir modal para 'Comprar ahora' -->
+            <button type="button"
+                    class="btn btn-primary js-open-custom-modal"
+                    data-product-slug="{{ producto.slug }}"
+                    data-product-id="{{ producto.id }}"
+                    data-action="buy">
+              Comprar ahora
+            </button>
+          </div>
+        {% else %}
+          <div class="alert alert-warning mt-2">Debes iniciar sesión para comprar.</div>
+          <a class="btn btn-outline-primary" href="{{ url_for('login', next=request.path) }}">Iniciar sesión</a>
+          <a class="btn btn-primary" href="{{ url_for('signup', next=request.path) }}">Registrarse</a>
+        {% endif %}
+    </div>
+  </div> {# /product #}
+
+  <!-- Onda decorativa inferior que cierra el degradado -->
+  <div class="wave-bottom">
+    <svg viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path fill="#f8c6d4" fill-opacity="1"
+            d="M0,320 C480,480 960,160 1440,320 L1440,500 L0,500 Z">
+      </path>
+    </svg>
+  </div>
+
+  <!-- ========== RESEÑAS Y MATERIALES EN EL ROSA CLARITO ========== -->
+<section class="tabs-section">
+  <div class="tabs">
+    <button class="tab-button active" data-tab="reseñas">Reseñas</button>
+    <button class="tab-button" data-tab="materiales">Materiales</button>
+  </div>
+
+  <div class="tab-content active" id="reseñas">
+    <h2 class="reviews-title">Opiniones de nuestros clientes</h2>
+    <div class="reviews-container">
+      <div class="review-card light">
+        <div class="review-header">
+          <img src="{{ url_for('static', filename='img/user1.jpg') }}" alt="Usuario" class="review-avatar">
+          <div class="review-name">María L.</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-text">
+          “Mi letrero personalizado quedó increíble. La luz es suave y el color es justo
+          como lo imaginaba. ¡Lo amo!”
+        </p>
+      </div>
+
+      <div class="review-card dark">
+        <div class="review-header">
+          <img src="{{ url_for('static', filename='img/user2.jpg') }}" alt="Usuario" class="review-avatar">
+          <div class="review-name">Carlos R.</div>
+          <div class="review-stars">★★★★☆</div>
+        </div>
+        <p class="review-text">
+          “Tardó un poco en llegar, pero la calidad lo vale totalmente. Mi letrero se
+          ha convertido en el centro de atención de mi sala.”
+        </p>
+      </div>
+
+      <div class="review-card light">
+        <div class="review-header">
+          <img src="{{ url_for('static', filename='img/user3.jpg') }}" alt="Usuario" class="review-avatar">
+          <div class="review-name">Andrea P.</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-text">
+          “Súper recomendado. El letrero que mandé hacer para mi estudio quedó precioso
+          y le dio vida a todo el espacio.”
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="materiales">
+    <h2 class="reviews-title">Materiales y calidad</h2>
+    <ul class="materials-list">
+      <li>Acrílico resistente a rayones</li>
+      <li>Iluminación LED de bajo consumo</li>
+      <li>Montura de aluminio ligero</li>
+      <li>Protección contra humedad y polvo (IP65)</li>
+    </ul>
+  </div>
+</section>
+
+{# -- Eliminé el formulario directo que ya no se usará (JS abrirá modal y enviará) -- #}
+
+
+<!-- OVERLAY Y MODAL FUERA DEL WRAPPER -->
+<div class="payment-overlay" id="paymentOverlay" style="display:none;"></div>
+
+<div class="payment" id="paymentModal" style="display:none;" aria-hidden="true">
+    <h2 class="payment-title">Elige medida (lado más largo):</h2>
+
+    <div class="size-options" id="sizeOptions">
+        <button type="button" class="size-btn" data-size="20">20 CM</button>
+        <button type="button" class="size-btn" data-size="25">25 CM</button>
+        <button type="button" class="size-btn" data-size="30">30 CM</button>
+        <button type="button" class="size-btn" data-size="35">35 CM</button>
+        <button type="button" class="size-btn" data-size="40">40 CM</button>
+        <button type="button" class="size-btn" data-size="45">45 CM</button>
+        <button type="button" class="size-btn" data-size="50">50 CM</button>
+        <button type="button" class="size-btn" data-size="55">55 CM</button>
+    </div>
+
+    <label for="customText" class="payment-label">Escribe tu texto:</label>
+    <textarea id="customText" name="custom_text"
+              class="payment-input"
+              rows="3"
+              placeholder="Ejemplo: 'Hola Mundo'"></textarea>
+
+    <h3 class="payment-subtitle">Elige tu color:</h3>
+    <div class="color-options" id="colorOptions">
+        <div class="color-circle" role="button" data-color="#e53935" style="background-color:#e53935;"></div>
+        <div class="color-circle" role="button" data-color="#303f9f" style="background-color:#303f9f;"></div>
+        <div class="color-circle" role="button" data-color="#81c784" style="background-color:#81c784;"></div>
+        <div class="color-circle" role="button" data-color="#ffeb3b" style="background-color:#ffeb3b;"></div>
+        <div class="color-circle" role="button" data-color="#fb8c00" style="background-color:#fb8c00;"></div>
+        <div class="color-circle" role="button" data-color="#29b6f6" style="background-color:#29b6f6;"></div>
+        <div class="color-circle" role="button" data-color="#f48fb1" style="background-color:#f48fb1;"></div>
+    </div>
+
+    {# Hidden inputs para que el JS pueda poner los valores seleccionados #}
+    <input type="hidden" id="selectedSize" name="size" value="">
+    <input type="hidden" id="selectedColor" name="color" value="">
+
+    <label for="notes" class="payment-label">Notas adicionales:</label>
+    <textarea id="notes" name="notes"
+              class="payment-input"
+              rows="3"
+              placeholder="Ejemplo: Me gustaría que el texto sea en cursiva."></textarea>
+
+    <div class="cardIcons">
+        <img src="{{ url_for('static', filename='img/visa.png') }}" width="40" alt="Visa" class="cardIcon">
+        <img src="{{ url_for('static', filename='img/master.png') }}" width="40" alt="Mastercard" class="cardIcon">
+    </div>
+
+    <div style="display:flex; gap:8px; align-items:center; margin-top:10px;">
+      <button class="payButton btn btn-success">Confirmar compra</button>
+      <button type="button" class="btn btn-secondary js-cancel-modal">Cancelar</button>
+    </div>
+
+    <span class="close" id="closePay" style="cursor:pointer; position:absolute; top:8px; right:12px;">X</span>
+</div>
+
+
+</div> {# /product-wrapper #}
+
+  <!-- FOOTER -->
+<footer class="lumina-footer py-4">
+  <div class="container text-center">
+    <!-- Logo -->
+    <div class="footer-logo mb-3">
+      <img src="{{ url_for('static', filename='img/LogoLumina.png') }}"
+           alt="Logo Lumina"
+           class="footer-logo-img">
+    </div>
+
+   <!-- Redes sociales -->
+<div class="social-icons d-flex justify-content-center gap-3">
+  <a href="#" aria-label="Facebook">
+    <img src="{{ url_for('static', filename='img/iconos1.png') }}"
+         alt="Facebook"
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Instagram">
+    <img src="{{ url_for('static', filename='img/iconos2.png') }}"
+         alt="Instagram"
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Tiktok">
+    <img src="{{ url_for('static', filename='img/iconos3.png') }}"
+         alt="Tiktok"
+         class="social-icon-img">
+  </a>
+</div>
+
+</footer>
+
+
+<!-- CSS y JS de esta pantalla -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/detallesP1.css') }}">
+<script src="{{ url_for('static', filename='js/detallesP1.js') }}"></script>
+
+
+
+{% endblock %}

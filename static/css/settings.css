@@ -1,0 +1,181 @@
+/* ========== TOKENS (toma los mismos de Lumina si ya existen) ========== */
+:root {
+  --lumina-pink: #ff4da6;
+  --lumina-pink-soft: #ffc9e7;
+  --lumina-bg-dark: #000000;
+  --lumina-text-dark: #333333;
+  --lumina-white: #ffffff;
+}
+
+/* ========== LAYOUT GENERAL ========== */
+.settings-page {
+  min-height: calc(100vh - 80px);
+  padding: 3rem 1.5rem 4rem;
+  background: radial-gradient(circle at top left, #ffe6f7 0%, #ffffff 45%, #ffe6ff 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.settings-container {
+  width: 100%;
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .settings-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== CABECERA ========== */
+.settings-header {
+  padding-right: 1rem;
+}
+
+.settings-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #ff4da6;
+  margin-bottom: 0.5rem;
+}
+
+.settings-title span {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--lumina-text-dark);
+}
+
+.settings-subtitle {
+  font-size: 0.98rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.settings-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 77, 166, 0.07);
+  border: 1px solid rgba(255, 77, 166, 0.3);
+}
+
+.settings-badge-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--lumina-pink);
+}
+
+.settings-badge-id {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--lumina-text-dark);
+}
+
+/* ========== TARJETAS ========== */
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.settings-card {
+  background: var(--lumina-white);
+  border-radius: 18px;
+  padding: 1.5rem 1.6rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.settings-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+  color: var(--lumina-text-dark);
+}
+
+.settings-summary p {
+  margin: 0.15rem 0;
+  font-size: 0.95rem;
+}
+
+/* ========== FORMULARIO ========== */
+.settings-form-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.settings-form-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right,
+              rgba(255, 77, 166, 0.12),
+              transparent 60%);
+  pointer-events: none;
+}
+
+.settings-form {
+  position: relative;
+  z-index: 1;
+}
+
+.settings-form .form-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.settings-form .form-label span {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.settings-form .form-control {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 0.94rem;
+  padding: 0.55rem 0.75rem;
+}
+
+.settings-form .form-control:focus {
+  border-color: var(--lumina-pink);
+  box-shadow: 0 0 0 0.15rem rgba(255, 77, 166, 0.2);
+}
+
+/* Botón Lumina */
+.btn-lumina-primary {
+  background: var(--lumina-pink);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.7rem 1.8rem;
+  font-size: 0.98rem;
+  box-shadow: 0 10px 20px rgba(255, 77, 166, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.btn-lumina-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(255, 77, 166, 0.5);
+}
+
+.btn-lumina-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 12px rgba(255, 77, 166, 0.3);
+}
+
+.settings-btn {
+  width: 100%;
+  margin-top: 0.2rem;
+}

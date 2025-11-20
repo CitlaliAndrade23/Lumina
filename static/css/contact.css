@@ -1,0 +1,155 @@
+:root {
+  --lumina-pink: #ff4da6;
+  --lumina-pink-soft: #ffc9e7;
+  --lumina-bg-dark: #000000;
+  --lumina-text-dark: #333333;
+  --lumina-white: #ffffff;
+}
+
+/* Fondo general de la página */
+.contact-page {
+  min-height: calc(100vh - 80px);
+  padding: 3rem 1.5rem 4rem;
+  background: radial-gradient(circle at top left, #ffe6f7 0%, #ffffff 45%, #ffe6ff 100%); /*bonito fondo degradado*/
+  display: flex;
+  justify-content: center;
+}
+
+/* Tarjeta central */
+.contact-card {
+  width: 100%;
+  max-width: 960px;
+  background: var(--lumina-white);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  padding: 2.3rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr;
+  gap: 2rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .contact-card {
+    grid-template-columns: 1fr;
+    padding: 1.8rem 1.5rem;
+  }
+}
+
+/* Columna izquierda: título */
+.title-decor h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #ff4da6;
+  margin-bottom: 0.5rem;
+}
+
+.title-decor .message {
+  font-size: 0.98rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Columna derecha: formulario */
+.form.contact {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: #444;
+}
+
+/* Inputs y textarea estilo Lumina */
+.form-group input[type="text"],
+.form-group input[type="email"] {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid var(--lumina-pink-soft);
+  outline: none;
+  font-size: 0.95rem;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border-radius: 14px;
+  border: 2px solid var(--lumina-pink-soft);
+  outline: none;
+  resize: vertical;
+  min-height: 140px;
+  font-size: 0.95rem;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+/* Efecto focus */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--lumina-pink);
+  box-shadow: 0 0 0 3px rgba(255, 77, 166, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Botón */
+.form-actions {
+  margin-top: 1.2rem;
+}
+
+.btn-contact {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  background: var(--lumina-pink);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1.2rem;   /* 👈 aquí estaba el error */
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(255, 77, 166, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.btn-contact:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(255, 77, 166, 0.55);
+}
+
+.btn-contact:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(255, 77, 166, 0.35);
+}
+
+/* Flash messages */
+.flash-container {
+  max-width: 960px;
+  margin: 0 auto 1rem;
+}
+
+.alert-success {
+  background: #ffebf7;
+  color: #cc2f78;
+  border: 1px solid #ffb3d8;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(255, 77, 166, 0.15);
+}
+
+.alert-error {
+  background: #ffe3e3;
+  color: #d12c2c;
+  border: 1px solid #ffb3b3;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-weight: 500;
+}

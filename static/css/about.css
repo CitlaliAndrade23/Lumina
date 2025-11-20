@@ -16,27 +16,6 @@
     gap: 1.8rem;
 }
 
-/* HERO NEGRO CON FRASE */
-.nosotros-hero {
-    background-color: var(--lumina-bg-dark);
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
-}
-
-.nosotros-claim {
-    margin: 0 0 1.2rem 0;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--lumina-pink);
-}
-
-.nosotros-hero-icon {
-    font-size: 3rem;
-    color: var(--lumina-pink);
-}
-
 /* TARJETAS GENERALES (HISTORIA / VALORES) */
 .nosotros-card {
     border-radius: 18px;
@@ -52,7 +31,7 @@
     text-transform: uppercase;
 }
 
-/* HISTORIA EN ROSA CLARO */
+/* HISTORIA ROSA CLARO */
 .nosotros-historia {
     background-color: var(--lumina-pink-soft);
     color: var(--lumina-text-dark);
@@ -64,7 +43,7 @@
     line-height: 1.6;
 }
 
-/* VALORES EN ROSA FUERTE */
+/* VALORES ROSA FUERTE */
 .nosotros-valores {
     background-color: var(--lumina-pink);
     color: var(--lumina-white);
@@ -80,48 +59,109 @@
     font-weight: 700;
 }
 
-/* SECCIÓN EQUIPO */
+/* ====================================================== */
+/* ===============  EQUIPO CREATIVO  ==================== */
+/* ====================================================== */
+
 .nosotros-equipo {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto 4rem;
+  padding: 2rem 1.5rem 0;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
-/* CARTAS DE AVATAR */
+
+/* CONTENEDOR DE LAS TARJETAS */
 .nosotros-avatars {
-    display: flex;
-    justify-content: center;
-    gap: 1.4rem;
-    flex-wrap: wrap;
+  position: relative;
+  height: 420px;       /* 👈 ESTO ES LO IMPORTANTE */
+  width: 100%;         /* 👈 aseguras que ocupe la columna del grid */
+  max-width: 600px;
+  margin: 0 auto;
 }
 
+
+/* TARJETAS DEL EQUIPO (collage + animación + clic) */
 .avatar-card {
-    background-color: var(--lumina-bg-dark);
-    padding: 0.75rem;
-    border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  position: absolute;
+  width: 75%;
+  max-width: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 16px 30px rgba(0,0,0,0.18);
+
+  /* Para que floten y sean clickeables */
+  opacity: 1;
+  z-index: 5;
+  cursor: pointer;
+
+  transform-origin: center;
+
+  animation:
+    cardEntrance 0.8s ease-out forwards,
+    cardFloat 6s ease-in-out infinite 1s;
 }
 
-/* Placeholder de la foto (puedes cambiarlo por una imagen) */
-.avatar-placeholder {
-    width: 90px;
-    height: 100px;
-    border-radius: 10px;
-    border: 2px solid var(--lumina-pink-soft);
-  
-    box-shadow:
-        0 0 10px rgba(255, 77, 166, 0.7),
-        0 0 20px rgba(255, 77, 166, 0.3);
+/* Tarjeta seleccionada (traída al frente) */
+.active-card {
+  z-index: 20 !important;
+  transform: scale(1.15) rotate(0deg) !important;
+  box-shadow: 0 30px 45px rgba(0,0,0,0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* TARJETA NEGRA DE TEXTO DEL EQUIPO */
+/* Opcional: las no seleccionadas se ven un poquito menos marcadas */
+.avatar-card:not(.active-card) {
+  opacity: 0.85;
+}
+
+/* Imagen dentro de la tarjeta */
+.avatar-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* POSICIONES TIPO COLLAGE */
+.card-isaac {
+  --rot: -3deg;
+  top: 0;
+  left: 0;
+  animation-delay: 0.2s, 1.2s;
+}
+
+.card-jacqueline {
+  --rot: 3deg;
+  top: 25%;
+  right: 0;
+  animation-delay: 0.35s, 1.35s;
+}
+
+.card-citlali {
+  --rot: -2deg;
+  bottom: 0;
+  left: 15%;
+  animation-delay: 0.5s, 1.5s;
+}
+
+/* HOVER */
+.avatar-card:hover {
+  box-shadow: 0 22px 40px rgba(0,0,0,0.28);
+  transform: translateY(-6px) scale(1.03) rotate(var(--rot));
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* TEXTO DEL EQUIPO */
 .equipo-text-card {
-    background-color: var(--lumina-bg-dark);
-    color: var(--lumina-white);
+    background: #ffe6f7;
     border-radius: 18px;
-    padding: 1.7rem 1.6rem;
+    padding: 2rem;
     text-align: center;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .equipo-text-card h2 {
@@ -129,6 +169,8 @@
     font-size: 0.95rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    font-weight: 700;
+    color: #ff4da6;
 }
 
 .equipo-text-card p {
@@ -146,43 +188,73 @@
     color: var(--lumina-pink);
 }
 
-/* UN POCO MÁS GRANDE EN PANTALLAS GRANDES */
-@media (min-width: 768px) {
-    .nosotros-claim {
-        font-size: 1.6rem;
-    }
+/* ====================================================== */
+/* ====================  RESPONSIVO  ===================== */
+/* ====================================================== */
 
-    .nosotros-historia p,
-    .equipo-text-card p {
-        font-size: 0.96rem;
-    }
+@media (max-width: 992px) {
+  .nosotros-equipo {
+    /* antes solo tenías grid-template-columns (que no afecta un flex) */
+    flex-direction: column;     /* 🔹 apila avatars + texto */
+    align-items: center;        /* 🔹 centra el contenido */
+    gap: 1.2rem;                /* 🔹 antes era 2rem */
+    padding-top: 1.5rem;        /* opcional: un poco menos de aire arriba */
+  }
 
-    .avatar-placeholder {
-        width: 110px;
-        height: 120px;
-    }
+  .nosotros-avatars {
+    margin-bottom: 1rem;        /* menos espacio debajo de las tarjetas */
+  }
 }
 
 
-/* ------------------ FOOTER ------------------ */
-.lumina-footer {
-    background-color: #000000;
-    color: #ffffff;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
+@media (max-width: 576px) {
+  .nosotros-avatars {
+    height: auto;
+  }
+
+  .avatar-card {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin-bottom: 0.6rem;   
+    transform: none;
+    animation: cardEntrance 0.8s ease-out forwards;
+  }
 }
 
-.footer-logo {
-    font-weight: 700;
-    font-size: 1.4rem;
+
+/* ====================================================== */
+/* === ANIMACIONES de las tarjetas de cada integrante === */
+/* ====================================================== */
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95) rotate(var(--rot, 0deg));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(var(--rot, 0deg));
+  }
 }
 
-.social-icons a {
-    color: var(--lumina-pink);
-    font-size: 1.3rem;
-    transition: color 0.3s ease;
+@keyframes cardFloat {
+  0% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-6px) rotate(var(--rot, 0deg));
+  }
+  100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
 }
 
-.social-icons a:hover {
-    color: #ffffff;
+/* Borde suave cuando está activa (además de agrandarse) */
+.active-card {
+  z-index: 20 !important;
+  transform: scale(1.15) rotate(0deg) !important;
+  box-shadow: 0 30px 45px rgba(0,0,0,0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, outline 0.35s ease;
+  outline: 3px solid rgba(255, 77, 166, 0.7);
 }

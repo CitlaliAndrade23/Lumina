@@ -2,7 +2,6 @@
 
 {% block title %}Registro{% endblock %}
 
-{# usamos el mismo CSS del login #}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
 {% endblock %}
@@ -32,7 +31,13 @@
             <p class="error">{{ error }}</p>
             {% endif %}
 
-            <form class="form signup" action="/signup" method="POST" novalidate>
+            <form class="form signup"
+                  method="POST"
+                  action="{{ url_for('signup', next=request.args.get('next')) }}"
+                  novalidate>
+
+                <!-- 🔒 Campo oculto para conservar la ruta original -->
+                <input type="hidden" name="next" value="{{ next or request.args.get('next') }}">
 
                 <div class="form-group">
                     <label for="fname">Nombre</label>
@@ -42,8 +47,7 @@
                         name="fname"
                         placeholder="Tu nombre" 
                         required
-                        autofocus
-                        aria-label="Nombre">
+                        autofocus>
                 </div>
 
                 <div class="form-group">
@@ -52,8 +56,7 @@
                         type="text" 
                         id="lastname" 
                         name="lastname"
-                        placeholder="Tu apellido"
-                        aria-label="Apellido">
+                        placeholder="Tu apellido">
                 </div>
 
                 <div class="form-group">
@@ -63,7 +66,6 @@
                         id="email"
                         name="email" 
                         placeholder="your@mail.com"
-                        aria-label="Email"
                         required>
                 </div>
 
@@ -74,7 +76,6 @@
                         id="password" 
                         name="password" 
                         placeholder="Tu contraseña"
-                        aria-label="Contraseña"
                         required>
                 </div>
 
@@ -85,7 +86,6 @@
                         id="cpassword" 
                         name="cpassword"
                         placeholder="Confirmar"
-                        aria-label="Confirmar Contraseña" 
                         required>
                 </div>
 
@@ -96,41 +96,43 @@
                 </div>
 
                 <div class="form-links">
-                    <a href="/login">¿Ya tienes una cuenta? Iniciar sesión</a>
+                    <!-- 🔁 El enlace conserva la ruta original -->
+                    <a href="{{ url_for('login', next=request.args.get('next')) }}">
+                        ¿Ya tienes una cuenta? Iniciar sesión
+                    </a>
                 </div>
             </form>
         </div>
-
     </div>
 </div>
 
+<!-- FOOTER -->
 <footer class="lumina-footer py-4">
   <div class="container text-center">
-    <!-- Logo -->
     <div class="footer-logo mb-3">
       <img src="{{ url_for('static', filename='img/LogoLumina.png') }}" 
            alt="Logo Lumina" 
            class="footer-logo-img">
     </div>
 
-   <!-- Redes sociales -->
-<div class="social-icons d-flex justify-content-center gap-3">
-  <a href="#" aria-label="Facebook">
-    <img src="{{ url_for('static', filename='img/iconos1.png') }}" 
-         alt="Facebook" 
-         class="social-icon-img">
-  </a>
-  <a href="#" aria-label="Instagram">
-    <img src="{{ url_for('static', filename='img/iconos2.png') }}" 
-         alt="Instagram" 
-         class="social-icon-img">
-  </a>
-  <a href="#" aria-label="Tiktok">
-    <img src="{{ url_for('static', filename='img/iconos3.png') }}" 
-         alt="Tiktok" 
-         class="social-icon-img">
-  </a>
-</div>
+    <div class="social-icons d-flex justify-content-center gap-3">
+      <a href="#" aria-label="Facebook">
+        <img src="{{ url_for('static', filename='img/iconos1.png') }}" 
+             alt="Facebook" 
+             class="social-icon-img">
+      </a>
+      <a href="#" aria-label="Instagram">
+        <img src="{{ url_for('static', filename='img/iconos2.png') }}" 
+             alt="Instagram" 
+             class="social-icon-img">
+      </a>
+      <a href="#" aria-label="Tiktok">
+        <img src="{{ url_for('static', filename='img/iconos3.png') }}" 
+             alt="Tiktok" 
+             class="social-icon-img">
+      </a>
+    </div>
+  </div>
 </footer>
 
 {% endblock %}

@@ -120,6 +120,19 @@
     </div>
 </div>
 
+<footer class="lumina-footer py-4">
+  <div class="container text-center">
+    <div class="footer-logo mb-3">
+      <img src="{{ url_for('static', filename='img/LogoLumina.png') }}" alt="Logo Lumina" class="footer-logo-img">
+    </div>
+    <div class="social-icons d-flex justify-content-center gap-3">
+      <a href="#" aria-label="Facebook"><img src="{{ url_for('static', filename='img/iconos1.png') }}" alt="Facebook" class="social-icon-img"></a>
+      <a href="#" aria-label="Instagram"><img src="{{ url_for('static', filename='img/iconos2.png') }}" alt="Instagram" class="social-icon-img"></a>
+      <a href="#" aria-label="Tiktok"><img src="{{ url_for('static', filename='img/iconos3.png') }}" alt="Tiktok" class="social-icon-img"></a>
+    </div>
+  </div>
+</footer>
+
 <!-- Carga correcta de CSS y JS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/venta.css') }}">
 <script src="{{ url_for('static', filename='js/venta.js') }}"></script>

@@ -1,0 +1,142 @@
+{% extends "navbar.html" %}
+
+{% block title %}VentaP{% endblock %}
+
+{% block content %}
+
+<div class="container-items">
+
+    <!-- PALABRAS -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/salaPlantilla.png') }}" alt="Palabras" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>PALABRAS</h2>
+            </div>
+
+            <button onclick="window.location.href='{{ url_for('detallesP1', producto='palabras') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- NUMEROS -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/salaPlantillaNumeros.png') }}" alt="Números" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>NUMEROS</h2>
+            </div>
+
+            <button onclick="window.location.href='{{ url_for('detallesP1', producto='numeros') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- EMOJI -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/salaPlantillaEmoji.png') }}" alt="Emoji" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>EMOJI</h2>
+            </div>
+
+            <button onclick="window.location.href='{{ url_for('detallesP1', producto='emoji') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- PELICULAS -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/salaPlantillaPulp.png') }}" alt="Películas" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>PELICULAS</h2>
+            </div>
+
+            <button onclick="window.location.href='{{ url_for('detallesP1', producto='peliculas') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- VIDEOJUEGOS -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/salaPlantillaMario.png') }}" alt="Videojuegos" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>VIDEOJUEGOS</h2>
+            </div>
+
+            <button onclick="window.location.href='{{ url_for('detallesP1', producto='videojuegos') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+    <!-- ANIMES -->
+    <div class="item">
+        <figure>
+            <img src="{{ url_for('static', filename='img/salaPlantillaOne.png') }}" alt="Animes" />
+        </figure>
+        <div class="info-product">
+            <div class="enMedio">
+                <h2>ANIMES</h2>
+            </div>
+
+            <button onclick="window.location.href='{{ url_for('detallesP1', producto='animes') }}'">
+                Detalles
+            </button>
+        </div>
+    </div>
+
+</div>
+
+  <!-- FOOTER -->
+<footer class="lumina-footer py-4">
+  <div class="container text-center">
+    <!-- Logo -->
+    <div class="footer-logo mb-3">
+      <img src="{{ url_for('static', filename='img/LogoLumina.png') }}" 
+           alt="Logo Lumina" 
+           class="footer-logo-img">
+    </div>
+
+   <!-- Redes sociales -->
+<div class="social-icons d-flex justify-content-center gap-3">
+  <a href="#" aria-label="Facebook">
+    <img src="{{ url_for('static', filename='img/iconos1.png') }}" 
+         alt="Facebook" 
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Instagram">
+    <img src="{{ url_for('static', filename='img/iconos2.png') }}" 
+         alt="Instagram" 
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Tiktok">
+    <img src="{{ url_for('static', filename='img/iconos3.png') }}" 
+         alt="Tiktok" 
+         class="social-icon-img">
+  </a>
+</div>
+
+</footer>
+
+<!-- CSS y JS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ventaCompras.css') }}">
+<script src="{{ url_for('static', filename='js/ventaCompra.js') }}"></script>
+
+{% endblock %}

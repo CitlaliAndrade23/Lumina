@@ -1,21 +1,110 @@
 {% extends "navbar.html" %}
 
-{% block title %}Configuraciones{% endblock %}
+{% block title %}Mi Perfil - Lumina{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+{% endblock %}
 
 {% block content %}
-<article class="content">
-    <h1 style="color: #3B82F6;">Mi Perfil (Settings)</h1>
-    <p class="message">Esta es la información de tu perfil. Solo la ves si estás logueado.</p>
+<main class="settings-page">
+  <div class="settings-container">
 
-    {% if user %}
-    <div style="border: 1px solid #D1D5DB; padding: 20px; border-radius: 8px; max-width: 400px;">
-        <p><strong>ID de Usuario:</strong> {{ user.id }}</p>
-        <p><strong>Nombre Completo:</strong> {{ user.nombre }}</p>
+    <!-- Columna izquierda: título y texto -->
+    <section class="settings-header">
+      <h1 class="settings-title">Mi Perfil <span>(Settings)</span></h1>
+      <p class="settings-subtitle">
+        Administra tu información personal, correo y contraseña.
+        Estos cambios solo los puedes ver tú cuando estás logueado.
+      </p>
+
+      <div class="settings-badge">
+        <span class="settings-badge-label">Usuario activo</span>
+        <span class="settings-badge-id">ID #{{ user.id }}</span>
+      </div>
+    </section>
+
+    <!-- Columna derecha: tarjetas -->
+    <section class="settings-content">
+
+      <!-- Tarjeta: resumen de usuario -->
+      <article class="settings-card settings-summary">
+        <h2>Resumen de tu cuenta</h2>
+        <p><strong>Nombre Completo:</strong> {{ user.fname }} {{ user.lastname }}</p>
         <p><strong>Email (Login):</strong> {{ user.email }}</p>
-        <!-- Nota: NUNCA se debe mostrar el password_hash aquí -->
+      </article>
+
+      <!-- Tarjeta: formulario -->
+      <article class="settings-card settings-form-card">
+        <h2>Editar información</h2>
+
+        <form action="{{ url_for('update_profile') }}" method="POST" class="settings-form">
+          <div class="mb-3">
+            <label for="fname" class="form-label">Nuevo nombre</label>
+            <input type="text" id="fname" name="fname"
+                   value="{{ user.fname }}"
+                   class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastname" class="form-label">Nuevo apellido</label>
+            <input type="text" id="lastname" name="lastname"
+                   value="{{ user.lastname }}"
+                   class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Nuevo email</label>
+            <input type="email" id="email" name="email"
+                   value="{{ user.email }}"
+                   class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Nueva contraseña <span>(opcional)</span></label>
+            <input type="password" id="password" name="password"
+                   class="form-control"
+                   placeholder="Déjalo vacío si no quieres cambiarla">
+          </div>
+
+          <button type="submit" class="btn btn-lumina-primary settings-btn">
+            Guardar cambios
+          </button>
+        </form>
+      </article>
+
+    </section>
+  </div>
+</main>
+
+  <!-- FOOTER -->
+<footer class="lumina-footer py-4">
+  <div class="container text-center">
+    <!-- Logo -->
+    <div class="footer-logo mb-3">
+      <img src="{{ url_for('static', filename='img/LogoLumina.png') }}" 
+           alt="Logo Lumina" 
+           class="footer-logo-img">
     </div>
-    {% else %}
-    <p class="error" style="color: red;">Error: No se pudo cargar la información del usuario. Intenta iniciar sesión de nuevo.</p>
-    {% endif %}
-</article>
+
+   <!-- Redes sociales -->
+<div class="social-icons d-flex justify-content-center gap-3">
+  <a href="#" aria-label="Facebook">
+    <img src="{{ url_for('static', filename='img/iconos1.png') }}" 
+         alt="Facebook" 
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Instagram">
+    <img src="{{ url_for('static', filename='img/iconos2.png') }}" 
+         alt="Instagram" 
+         class="social-icon-img">
+  </a>
+  <a href="#" aria-label="Tiktok">
+    <img src="{{ url_for('static', filename='img/iconos3.png') }}" 
+         alt="Tiktok" 
+         class="social-icon-img">
+  </a>
+</div>
+
+</footer>
 {% endblock %}
